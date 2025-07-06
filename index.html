@@ -13,7 +13,9 @@
     <header>
         <div class="container">
             <h1 class="fade-in">Portfolio</h1>
-            <nav class="fade-in">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+            <nav id="main-nav" class="fade-in">
+                <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#Skills">Skills</a>
                 <a href="#Projects">Projects</a>
@@ -40,9 +42,14 @@
         </div>  
     </header>
     
-    <section id="about" class="about fade-up">
+    <section id="about" class="fade-up">
+            <h2 class="hidden">About Me</h2>
+        <div class="about">
+            <div class="about-img">
+                <img src="Images/IMG_20250517_121429228_PORTRAIT~2.jpg" alt="">
+            </div>
             <div class="about-container">
-                <h2>About Me</h2>
+                <h2 class="show">About Me</h2>
                 <div class="about-para">
                     <h3>Academy : </h3>
                     <p>Hello! I'm a passionate and enthusiastic Computer Science Engineering student currently pursuing my degree at Arunai Engineering College, Tiruvannamalai. I completed my schooling at Vision Matric Higher Secondary School, where I built a
@@ -60,6 +67,7 @@
                     </p>
                 </div>
             </div>
+        </div>
     </section>
 
     <section id="projects" class="fade-up">
@@ -96,5 +104,10 @@
         </div>
     </footer>
 </body>
-
+<script>
+    document.getElementById('menu-icon').onclick = function () {
+        var nav = document.getElementById('main-nav');
+        nav.classList.toggle('active');
+    };
+</script>
 </html>
