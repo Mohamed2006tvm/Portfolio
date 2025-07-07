@@ -34,6 +34,7 @@ header {
     color: #00ffe1;
     padding: 0;
     margin-top: -10px;
+    margin-left: -15px;
     
 }
 
@@ -84,7 +85,7 @@ nav a:hover {
 .hero-img img:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
-    box-shadow: 0 0 20px 0 rgba(0, 255, 225, 0.2);
+    box-shadow: 0 0 30px 0 rgba(0, 255, 225, 0.3);
 }
 .hero{
     font-size: 1rem;
@@ -187,6 +188,7 @@ span {
 }
 .about-img img:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 225, 0.3);
 }
 .show {
     display: block;
@@ -340,16 +342,119 @@ span {
 .project-card:hover {
     transform: translateY(-5px);
 }
+.project-card a {
+    background: #00ffe1;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.project-card h3 {
+    font-size: 1.2rem;
+    color: #00ffe1;
+    margin-bottom: 0.5rem;
+}   
+.project-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+}
+.project-card input[type="button"] {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #00ffe1;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+}
+.project-card input[type="button"]:hover {
+    background: #00bfbf;
+    color: #fff;
+}
+/* Contact */
+#contact {
+    padding: 1rem 0;
+    background: #1f1f1f;
+    color: #f1f1f1;
+}
+#contact h2 {
+    font-size: 1.5rem;
+    color: #00ffe1;
+    margin-bottom: 1.3rem;
+    text-align: center;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+    
+}
+.contact-container p {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+.contact-info {
+    
+    padding: 1rem;
+    background: rgba(26, 26, 26, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 225, 0.2);
+}
+.contact-info h3 {
+    font-size: 1.2rem;
+    color: #00ffe1;
+    
+}
+.contact-info p {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+    display: inline-block;
+}
+.contact-info a {
+    color: #00ffe1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.contact-item {
+    margin-bottom: 1rem;
+}
+.contact-item i{
+    color: #00ffe1;
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    display: inline-block;
+}
+.contact-item a:hover {
+    color: #fff;
+}
 
 /* Footer */
 footer {
-    background: #1a1a1a;
     text-align: center;
     padding: 1rem;
     margin-top: 2rem;
     color: #888;
 }
-
+.quotes {
+    font-style: italic;
+    color: #afaeae;
+    background: #464444;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    padding: 0 1rem;
+    width: 80%;
+}
 /* Animations */
 .fade-in {
     animation: fadeIn 2s ease;
@@ -494,5 +599,30 @@ footer {
     }
     .hidden {
         display: block;
+    }
+    /* Contact */
+    .contact-container {
+        width: 100%;
+        padding: 0 1rem;
+    }
+    .contact-info {
+        padding: 1rem;
+        margin: 0 auto;
+        width: 90%;
+    }
+    .contact-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    .contact-info p {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    .quotes {
+        font-size: 0.8rem;
+        padding: 0 0.5rem;
+        width: 100%;
+        margin: 1rem auto;
+        text-align: center;
     }
 }
