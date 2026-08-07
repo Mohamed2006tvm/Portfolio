@@ -1767,8 +1767,8 @@ footer {
 /* Responsive grid overrides */
 @media (max-width: 1024px) {
     .container {
-        padding-left: .1rem !important;
-        padding-right: .1rem !important;
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
     }
 
     .praxire-grid {
