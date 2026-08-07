@@ -4,229 +4,2749 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mohamed's Portfolio</title>
-    <link rel="stylesheet" href="style.css" />  
 
-     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Secondary SEO and Meta Parameters -->
+    <meta name="description"
+        content="Mohamed — Creative Developer & Designer Portfolio. Specialized in building advanced web applications, ERP/CRM architecture, custom software solutions, and bespoke AI automation systems." />
+    <meta name="keywords"
+        content="Mohamed, Creative Developer, UI/UX Designer, ERP developer, CRM builder, AI integrations, Frontend Engineer, Portfolio" />
+    <meta name="author" content="Mohamed" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph Protocol (Facebook, Discord, Slack previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mohamed — Creative Developer & Designer" />
+    <meta property="og:description"
+        content="Explore my creative development portfolio, featuring advanced designs, modular ERP/CRM systems, and custom AI integrations." />
+    <meta property="og:url" content="https://mohamed.dev" />
+    <meta property="og:site_name" content="Mohamed Portfolio" />
+    <meta property="og:image" content="https://mohamed.dev/assets/og-cover.jpg" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mohamed — Creative Developer & Designer" />
+    <meta name="twitter:description"
+        content="Explore my creative development portfolio, featuring interactive UI layouts, microservices, and modular AI integrations." />
+    <meta name="twitter:image" content="https://mohamed.dev/assets/og-cover.jpg" />
+
+    <!-- Favicon placeholders -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+
+    <title>Mohamed — Creative Developer & Designer</title>
+
+    <!-- CSS and Tailwinds -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#050505',
+                        accent: '#3B82F6',
+                        purpleAccent: '#7C3AED',
+                        glass: 'rgba(255,255,255,0.04)',
+                        glassBorder: 'rgba(255,255,255,0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 </head>
 
-<body oncontextmenu="return false">
-    <header id ="home">
-        <div class="container">
-            <h1 class="fade-in">Portfolio</h1>
-            <i class="fa-solid fa-bars" id="menu-icon" ></i>
-            <nav id="main-nav" class="fade-in">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </div>
-        <div class="hero-container">
-            <div class="hero fade-up">
-                <h2>Hey Everyone This Is <span>Mohamed</span></h2>
-                <p>I'm a Computer Science Engineering student passionate about coding and web development.</p>
-                <p class="quotes"> You don’t need to be perfect — just consistent.</p>
-                <p></p>
+<body class="bg-black text-white selection:bg-accent/30 overflow-x-hidden">
 
-                <div class="social-icons fade-up">
-                    <a href="https://www.instagram.com/mr_dema_?igsh=MXUwbHpyODNjdHRpYw==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://github.com/Mohamed2006tvm" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mohamed-m-719176328?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"
+        class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-accent via-purpleAccent to-accent w-0 z-[1001] transition-all">
+    </div>
+
+    <!-- UI Background Elements -->
+    <div class="bg-overlay">
+        <div class="noise-texture"></div>
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor hidden md:block" id="cursor"></div>
+    <div class="custom-cursor-glow hidden md:block" id="cursor-glow"></div>
+
+    <!-- 1. Landing Experience Screen Reveal Overlay -->
+    <div class="landing-reveal-cover" id="reveal-cover">
+        <canvas id="intro-canvas"></canvas>
+        <div class="reveal-text-card" id="reveal-text">
+            <h1>Mohamed M</h1>
+            <p>Creative Portfolio Reveal</p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header>
+        <nav class="navbar" id="navbar">
+            <div class="container flex justify-between items-center py-4">
+                <a href="#home" class="logo text-lg font-bold tracking-tight">
+                    MOHAMED<span class="text-sm font-light text-[#8e8e93] ml-1">.DEV</span>
+                </a>
+                <ul class="nav-links hidden md:flex items-center gap-8">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="md:hidden text-2xl cursor-pointer ml-auto" id="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
                 </div>
             </div>
-            <div class="hero-img  slide-in">
-                <img src="Images/IMG_20250517_120457410_PORTRAIT.jpg" alt="Professional Image" />
-            </div>
-        </div>  
+        </nav>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="fixed top-[70px] left-0 w-full bg-black/95 backdrop-blur-xl border-b border-glassBorder py-8 hidden z-[999]"
+            id="mobile-nav">
+            <ul class="flex flex-col items-center gap-6 text-lg">
+                <li><a href="#home" class="mobile-link text-white/70">Home</a></li>
+                <li><a href="#about" class="mobile-link text-white/70">About</a></li>
+                <li><a href="#skills" class="mobile-link text-white/70">Skills</a></li>
+                <li><a href="#projects" class="mobile-link text-white/70">Projects</a></li>
+                <li><a href="#contact" class="mobile-link text-white/70">Contact</a></li>
+            </ul>
+        </div>
     </header>
-    
-    <section id="about" class="fade-up">
-            <h2 class="hidden">About Me</h2>
-        <div class="about">
-            <div class="about-img">
-                <img src="Images/IMG_20250517_121429228_PORTRAIT~2.jpg" alt="">
+
+    <!-- Main Content Container -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="section min-h-screen py-24 flex items-center">
+            <!-- Scrolling Tape Marquee Background -->
+            <div class="hero-tape-marquee" aria-hidden="true">
+                <div class="hero-tape-track">
+                    <span>MOHAMED</span><span>◆</span><span>AI &amp;
+                        FRONTEND</span><span>◆</span><span>MOHAMED</span><span>◆</span><span>AI &amp;
+                        FRONTEND</span><span>◆</span><span>MOHAMED</span><span>◆</span><span>AI &amp;
+                        FRONTEND</span><span>◆</span><span>MOHAMED</span><span>◆</span><span>AI &amp;
+                        FRONTEND</span><span>◆</span>
+                </div>
             </div>
-            <div class="about-container">
-                <h2 class="show">About </h2>
-                <div class="about-para">
-                    <h3>Academy : </h3>
-                    <p>Hello! I'm a passionate and enthusiastic Computer Science Engineering student currently pursuing my degree at Arunai Engineering College, Tiruvannamalai. I completed my schooling at Vision Matric Higher Secondary School, where I built a
-                    strong foundation for my academic and technical journey.</p>
+            <div class="hero-tape-marquee hero-tape-marquee-reverse" aria-hidden="true">
+                <div class="hero-tape-track hero-tape-track-reverse">
+                    <span>CREATIVE</span><span>✦</span><span>BUILDER</span><span>✦</span><span>PRAXIRE</span><span>✦</span><span>CREATIVE</span><span>✦</span><span>BUILDER</span><span>✦</span><span>PRAXIRE</span><span>✦</span><span>CREATIVE</span><span>✦</span><span>BUILDER</span><span>✦</span><span>PRAXIRE</span><span>✦</span>
                 </div>
-                <div class="about-para">
-                    <h3>Interests : </h3>
-                    <p>From a young age, I've been fascinated by technology and problem-solving. Over time, this interest grew into a deep passion for coding and web development. I enjoy creating user-friendly websites and exploring the endless possibilities the digital world offers.</p>
-                </div>
-                <div class="about-para">
-                    <h3>Skills : </h3>
-                    <p>I have hands-on experience with programming languages like Python and C, and I'm continuously working to expand my skillset and take on new challenges in the tech world. My goal is to build innovative solutions and grow as a developer
-                    who can make a real act.
+            </div>
+            <div class="container hero-wrapper">
+
+                <div class="hero-content">
+                    <!-- Praxire Founder Badge -->
+                    <a href="#praxire" class="founder-badge" id="founder-badge-link">
+                        <span class="founder-badge-dot"></span>
+                        <span class="founder-badge-label">Developer — <strong>Praxire</strong></span>
+                        <i class="fa-solid fa-arrow-right founder-badge-arrow"></i>
+                    </a>
+
+                    <h2 class="hero-title">
+                        <span>Mohamed M.</span>
+                        <span class="hero-title-role" id="hero-role-display">AI &amp; Frontend Developer</span>
+                        <span class="hero-title-accent">Building the Future.</span>
+                    </h2>
+                    <p class="hero-desc">
+                        Computer Science Engineering student at Arunai Engineering College. Experienced in building
+                        responsive interfaces, actively shipping SaaS platforms, and developing scalable AI-integrated
+                        solutions.
                     </p>
+                    <div class="hero-buttons">
+                        <a href="#praxire" class="btn-magnetic btn-primary" id="btn-praxire">See Praxire</a>
+                        <a href="#projects" class="btn-magnetic btn-secondary" id="btn-projects">View Projects</a>
+                    </div>
+                </div>
+
+                <div class="hero-image-outer">
+                    <div class="hero-image-glow-orb"></div>
+                    <div class="hero-image-wrapper cursor-none" id="parallax-portrait">
+                        <img src="Images/WhatsApp%20Image%202026-06-21%20at%206.09.06%20PM.jpeg" alt="Mohamed Portrait"
+                            id="portrait-img" />
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about"
+            class="section min-h-screen py-24 border-t border-glassBorder relative overflow-hidden bg-[#050505]">
+            <!-- Interactive Dot Grid Canvas Background -->
+            <canvas id="dot-grid-canvas" class="dot-grid-canvas"></canvas>
+            <!-- background soft ambient blue light -->
+            <div class="absolute w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[120px] pointer-events-none"
+                style="top: 20%; left: -10%; z-index: 1;"></div>
+            <div class="absolute w-[600px] h-[600px] rounded-full bg-indigo-500/5 blur-[120px] pointer-events-none"
+                style="bottom: 10%; right: -10%; z-index: 1;"></div>
+
+            <div class="container flex flex-col gap-24 relative z-10">
+
+                <!-- Split-screen design layout -->
+                <div class="about-wrapper items-stretch gap-12">
+                    <!-- Left Column: Portrait & Floating Orbits Graph -->
+                    <div class="about-left-column flex flex-col items-center justify-center relative min-h-[550px]">
+
+                        <!-- Ambient halo behind portrait -->
+                        <div class="portrait-halo absolute rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-[80px] transition-all duration-1000 ease-out"
+                            style="width: 420px; height: 420px; left: 50%; top: 50%; transform: translate(-50%, -50%); mix-blend-mode: screen; pointer-events: none; z-index: 0;">
+                        </div>
+
+                        <!-- Connector lines overlay graph -->
+                        <svg class="orbit-lines-overlay absolute inset-0 w-full h-full pointer-events-none"
+                            style="z-index: 1;">
+                            <defs>
+                                <linearGradient id="glow-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.1" />
+                                    <stop offset="50%" stop-color="var(--secondary-accent)" stop-opacity="0.6" />
+                                    <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.1" />
+                                </linearGradient>
+                            </defs>
+                            <line x1="50%" y1="50%" x2="12%" y2="15%" class="orbit-line" />
+                            <line x1="50%" y1="50%" x2="88%" y2="15%" class="orbit-line" />
+                            <line x1="50%" y1="50%" x2="8%" y2="85%" class="orbit-line" />
+                            <line x1="50%" y1="50%" x2="92%" y2="85%" class="orbit-line" />
+                        </svg>
+
+                        <!-- Centered morphing portrait -->
+                        <div class="about-left-placeholder relative z-10">
+                            <!-- Portrait moves here on scroll -->
+                        </div>
+
+                        <!-- Absolute Orbit badge nodes -->
+                        <!-- Top-Left: Developer -->
+                        <div class="orbit-wrap" style="position: absolute; left: 12%; top: 15%; z-index: 11;">
+                            <div class="orbit-float orbit-1">
+                                <div
+                                    class="orbit-card bg-[#0a0a0a]/80 border border-white/5 backdrop-blur-xl rounded-full px-5 py-2.5 flex items-center justify-center shadow-2xl shadow-black/80">
+                                    <i class="fa-solid fa-code text-[10px] text-accent mr-2"></i>
+                                    <span
+                                        class="text-xs uppercase font-extrabold tracking-widest text-[#a1a1aa] whitespace-nowrap font-mono">Developer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top-Right: Founder -->
+                        <div class="orbit-wrap" style="position: absolute; right: 12%; top: 15%; z-index: 11;">
+                            <div class="orbit-float orbit-2">
+                                <div
+                                    class="orbit-card bg-[#0a0a0a]/80 border border-white/5 backdrop-blur-xl rounded-full px-5 py-2.5 flex items-center justify-center shadow-2xl shadow-black/80">
+                                    <i class="fa-solid fa-bolt text-[10px] text-secondary-accent mr-2"></i>
+                                    <span
+                                        class="text-xs uppercase font-extrabold tracking-widest text-[#a1a1aa] whitespace-nowrap font-mono">Founder</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom-Left: Creative Thinker -->
+                        <div class="orbit-wrap" style="position: absolute; left: 8%; bottom: 15%; z-index: 11;">
+                            <div class="orbit-float orbit-3">
+                                <div
+                                    class="orbit-card bg-[#0a0a0a]/80 border border-white/5 backdrop-blur-xl rounded-full px-5 py-2.5 flex items-center justify-center shadow-2xl shadow-black/80">
+                                    <i class="fa-solid fa-wand-magic-sparkles text-[10px] text-accent mr-2"></i>
+                                    <span
+                                        class="text-xs uppercase font-extrabold tracking-widest text-[#a1a1aa] whitespace-nowrap font-mono font-mono">Creative
+                                        Thinker</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom-Right: Problem Solver -->
+                        <div class="orbit-wrap" style="position: absolute; right: 8%; bottom: 15%; z-index: 11;">
+                            <div class="orbit-float orbit-4">
+                                <div
+                                    class="orbit-card bg-[#0a0a0a]/80 border border-white/5 backdrop-blur-xl rounded-full px-5 py-2.5 flex items-center justify-center shadow-2xl shadow-black/80">
+                                    <i class="fa-solid fa-puzzle-piece text-[10px] text-secondary-accent mr-2"></i>
+                                    <span
+                                        class="text-xs uppercase font-extrabold tracking-widest text-[#a1a1aa] whitespace-nowrap font-mono">Problem
+                                        Solver</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column: Digital Philosophy — Bento Grid -->
+                    <div class="about-right flex flex-col justify-start">
+
+                        <div class="flex flex-col mb-12 text-left">
+                            <span class="text-xs uppercase tracking-widest font-mono text-[#8e8e93] mb-4">// Operating
+                                Architecture</span>
+                            <h2
+                                class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white font-heading">
+                                Digital Philosophy</h2>
+                        </div>
+
+                        <!-- Philosophy Bento Grid -->
+                        <div class="philosophy-bento-grid">
+
+                            <!-- 01 THINK -->
+                            <div class="philosophy-card" data-accent="blue">
+                                <div class="philosophy-card-glow"></div>
+                                <div class="philosophy-card-inner">
+                                    <div class="philosophy-card-header">
+                                        <span class="philosophy-card-number">01</span>
+                                        <i class="fa-solid fa-lightbulb philosophy-card-icon"></i>
+                                    </div>
+                                    <h3 class="philosophy-card-title">Think.</h3>
+                                    <p class="philosophy-card-desc">
+                                        Great products begin with understanding people, not writing code.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 02 DESIGN -->
+                            <div class="philosophy-card" data-accent="purple">
+                                <div class="philosophy-card-glow"></div>
+                                <div class="philosophy-card-inner">
+                                    <div class="philosophy-card-header">
+                                        <span class="philosophy-card-number">02</span>
+                                        <i class="fa-solid fa-pen-nib philosophy-card-icon"></i>
+                                    </div>
+                                    <h3 class="philosophy-card-title">Design.</h3>
+                                    <p class="philosophy-card-desc">
+                                        Every pixel should have a reason. Every interaction should feel effortless.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 03 BUILD -->
+                            <div class="philosophy-card" data-accent="blue">
+                                <div class="philosophy-card-glow"></div>
+                                <div class="philosophy-card-inner">
+                                    <div class="philosophy-card-header">
+                                        <span class="philosophy-card-number">03</span>
+                                        <i class="fa-solid fa-cube philosophy-card-icon"></i>
+                                    </div>
+                                    <h3 class="philosophy-card-title">Build.</h3>
+                                    <p class="philosophy-card-desc">
+                                        Fast. Reliable. Scalable. Technology should disappear behind the experience.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 04 EVOLVE -->
+                            <div class="philosophy-card" data-accent="purple">
+                                <div class="philosophy-card-glow"></div>
+                                <div class="philosophy-card-inner">
+                                    <div class="philosophy-card-header">
+                                        <span class="philosophy-card-number">04</span>
+                                        <i class="fa-solid fa-rocket philosophy-card-icon"></i>
+                                    </div>
+                                    <h3 class="philosophy-card-title">Evolve.</h3>
+                                    <p class="philosophy-card-desc">
+                                        Every project is another opportunity to improve. Learning never stops.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- System Status — Full-Width Bar -->
+                        <div
+                            class="system-status-panel philosophy-status-wide bg-white/[0.01] border border-white/5 rounded-2xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden mt-6 text-left shadow-2xl shadow-black/60">
+                            <div class="glass-shine absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full"
+                                style="pointer-events: none;"></div>
+
+                            <div class="philosophy-status-content">
+                                <!-- Right: Key stats in a horizontal row -->
+                                <div class="philosophy-status-stats">
+                                    <div class="philosophy-status-stat">
+                                        <span class="philosophy-status-label">MISSION</span>
+                                        <span class="philosophy-status-value">Building digital experiences.</span>
+                                    </div>
+                                    <div class="philosophy-status-divider"></div>
+                                    <div class="philosophy-status-stat">
+                                        <span class="philosophy-status-label">BUILDING</span>
+                                        <span class="philosophy-status-value flex items-center gap-1.5">
+                                            <span
+                                                class="status-pulse bg-blue-500 rounded-full w-1.5 h-1.5 inline-block"></span>
+                                            <span
+                                                class="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent font-black tracking-tight">Praxire</span>
+                                        </span>
+                                    </div>
+                                    <div class="philosophy-status-divider"></div>
+                                    <div class="philosophy-status-stat">
+                                        <span class="philosophy-status-label">NEXT TARGET</span>
+                                        <span class="philosophy-status-value">Global products.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Stats Grid Row with 4 Premium Spotlight Cards -->
+                <div
+                    class="stats-counter-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 relative z-10 w-full">
+
+                    <!-- Card 1 -->
+                    <div class="stat-glass-card group text-left relative overflow-hidden flex flex-col justify-between"
+                        style="min-height: 180px;">
+                        <div class="card-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                            style="z-index: 1;"></div>
+                        <div
+                            class="stat-card-badge font-mono text-[9px] text-[#8e8e93] tracking-widest uppercase relative z-10 font-bold">
+                            Metrics // 01</div>
+                        <div class="mt-8 relative z-10">
+                            <span class="stat-num text-5xl font-black text-white leading-none inline-block mb-1"
+                                data-val="20" data-suffix="+">0</span>
+                            <div
+                                class="stat-label text-[10px] uppercase tracking-widest font-extrabold text-[#8e8e93] group-hover:text-white transition-colors font-sans">
+                                DIGITAL PRODUCTS</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="stat-glass-card group text-left relative overflow-hidden flex flex-col justify-between"
+                        style="min-height: 180px;">
+                        <div class="card-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                            style="z-index: 1;"></div>
+                        <div
+                            class="stat-card-badge font-mono text-[9px] text-[#8e8e93] tracking-widest uppercase relative z-10 font-bold">
+                            Metrics // 02</div>
+                        <div class="mt-8 relative z-10">
+                            <span class="stat-num text-5xl font-black text-white leading-none inline-block mb-1"
+                                data-val="6" data-suffix="">0</span>
+                            <div
+                                class="stat-label text-[10px] uppercase tracking-widest font-extrabold text-[#8e8e93] group-hover:text-white transition-colors font-sans">
+                                BUSINESSES HELPED</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="stat-glass-card group text-left relative overflow-hidden flex flex-col justify-between"
+                        style="min-height: 180px;">
+                        <div class="card-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                            style="z-index: 1;"></div>
+                        <div
+                            class="stat-card-badge font-mono text-[9px] text-[#8e8e93] tracking-widest uppercase relative z-10 font-bold">
+                            Metrics // 03</div>
+                        <div class="mt-8 relative z-10">
+                            <span class="stat-num text-5xl font-black text-white leading-none inline-block mb-1"
+                                data-val="2" data-suffix="+">0</span>
+                            <div
+                                class="stat-label text-[10px] uppercase tracking-widest font-extrabold text-[#8e8e93] group-hover:text-white transition-colors font-sans">
+                                YEARS BUILDING</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="stat-glass-card group text-left relative overflow-hidden flex flex-col justify-between"
+                        style="min-height: 180px;">
+                        <div class="card-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                            style="z-index: 1;"></div>
+                        <div
+                            class="stat-card-badge font-mono text-[9px] text-[#8e8e93] tracking-widest uppercase relative z-10 font-bold">
+                            Metrics // 04</div>
+                        <div class="mt-8 relative z-10">
+                            <span class="stat-num text-5xl font-black text-white leading-none inline-block mb-1"
+                                data-val="100" data-suffix="∞">0</span>
+                            <div
+                                class="stat-label text-[10px] uppercase tracking-widest font-extrabold text-[#8e8e93] group-hover:text-white transition-colors font-sans">
+                                IDEAS IN PROGRESS</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section — Circular Radar HUD Redesign -->
+        <section id="skills" class="section py-24 border-t border-glassBorder overflow-hidden bg-[#030303]"
+            style="flex-direction:column; align-items:stretch; min-height: auto !important;">
+            <div class="container mb-8">
+                <div class="flex flex-col">
+                    <span class="text-xs uppercase tracking-widest text-[#8e8e93] mb-2">// Scanning Capabilities</span>
+                    <h2 class="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white">Technical Radar
+                    </h2>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="skills" class="fade-up">
-        <div class="skills-container">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card slide-in">
-                    <h3>HTML</h3>
-                    <p>Proficient in creating structured web content.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>CSS</h3>
-                    <p>Experienced in styling web pages for a polished look.</p>   
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>Boostrap</h3>
-                    <p>Skilled in using Bootstrap for responsive web design.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>Tailwind</h3>
-                    <p>Experienced in using Tailwind CSS for utility-first styling.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>JavaScript</h3>
-                    <p>Skilled in adding interactivity to web applications.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>React Js</h3>
-                    <p>Familiar with building dynamic user interfaces using React.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>Mongo DB</h3>
-                    <p>Basic knowledge of MongoDB for NoSQL database management.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>Git</h3>
-                    <p>Familiar with version control using Git for collaborative projects.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>Github</h3>
-                    <p>Proficient in using GitHub for code hosting and collaboration.</p>
-                </div>
-                <div class="skill-card  slide-in delay-1">
-                    <h3>Python</h3>
-                    <p>Proficient in Python for backend development and scripting.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>C</h3>
-                    <p>Experienced in C programming for system-level applications.</p>
-                </div>
-                
-                <div class="skill-card slide-in delay-1">
-                    <h3>MS Word</h3>
-                    <p>Skilled in using MS Word for documentation and reports.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>MS Excel</h3>
-                    <p>Proficient in MS Excel for data analysis and management.</p>
-                </div>
-                <div class="skill-card slide-in delay-1">
-                    <h3>MS PowerPoint</h3>
-                    <p>Experienced in creating presentations with MS PowerPoint.</p>
+
+            <div class="container grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                <!-- Left aspect: The interactive Rotating Radar System -->
+                <div class="lg:col-span-7 flex justify-center items-center relative min-h-[460px] md:min-h-[500px]">
+                    <div class="radar-system">
+                        <!-- Radar Core Sweep Line -->
+                        <div class="radar-sweep"></div>
+
+                        <!-- Sonar Rings -->
+                        <div class="sonar-ring ring-1"></div>
+                        <div class="sonar-ring ring-2"></div>
+                        <div class="sonar-ring ring-3"></div>
+                        <div class="sonar-ring ring-4"></div>
+
+                        <!-- Radar Centre Hub -->
+                        <div class="radar-core-hub">
+                            <span class="radar-core-ping"></span>
+                            <span class="radar-core-dot"></span>
+                        </div>
+
+                        <!-- Skill Nodes distributed in Polar Angles -->
+                        <!-- React (Angle: 0deg, Ring: 2) -->
+                        <div class="radar-node active-node" style="--angle:0deg; --radius:110px; --accent-color:#61dafb"
+                            data-name="React" data-lvl="Expert" data-exp="3+ Years"
+                            data-desc="Component-based library for building dynamic single-page applications and interactive UI components."
+                            data-tags="Frontend, SPA, JSX">
+                            <i class="fa-brands fa-react node-icon"></i>
+                        </div>
+
+                        <!-- CSS3 (Angle: 33deg, Ring: 3) -->
+                        <div class="radar-node active-node"
+                            style="--angle:33deg; --radius:160px; --accent-color:#264de4" data-name="CSS3"
+                            data-lvl="Advanced" data-exp="5+ Years"
+                            data-desc="Advanced layout design including CSS custom variables, modern Flexbox/Grid, transitions, and keyframe animations."
+                            data-tags="Styling, Layout, Responsive">
+                            <i class="fa-brands fa-css3-alt node-icon"></i>
+                        </div>
+
+                        <!-- Bootstrap (Angle: 65deg, Ring: 3) -->
+                        <div class="radar-node active-node"
+                            style="--angle:65deg; --radius:160px; --accent-color:#7952b3" data-name="Bootstrap"
+                            data-lvl="Expert" data-exp="3+ Years"
+                            data-desc="Popular front-end framework for building responsive web designs using pre-built components and modular utilities."
+                            data-tags="CSS Framework, UI Design, Responsive">
+                            <i class="fa-brands fa-bootstrap node-icon"></i>
+                        </div>
+
+                        <!-- Tailwind CSS (Angle: 98deg, Ring: 2) -->
+                        <div class="radar-node active-node"
+                            style="--angle:98deg; --radius:110px; --accent-color:#38bdf8" data-name="Tailwind CSS"
+                            data-lvl="Expert" data-exp="3+ Years"
+                            data-desc="Utility-first styling approach for fast, reliable UI scaffolding and consistent responsive grids."
+                            data-tags="CSS Framework, Utility-First">
+                            <i class="fa-solid fa-wind node-icon"></i>
+                        </div>
+
+                        <!-- JavaScript (Angle: 130deg, Ring: 1) -->
+                        <div class="radar-node active-node"
+                            style="--angle:130deg; --radius:70px; --accent-color:#f7df1e" data-name="JavaScript"
+                            data-lvl="Expert" data-exp="5+ Years"
+                            data-desc="Core programming language driving frontend animations, asynchronous workflows, and overall UI reactivity."
+                            data-tags="ES6+, Async, Dynamic">
+                            <i class="fa-brands fa-js node-icon"></i>
+                        </div>
+
+                        <!-- HTML5 (Angle: 163deg, Ring: 3) -->
+                        <div class="radar-node active-node"
+                            style="--angle:163deg; --radius:160px; --accent-color:#e34c26" data-name="HTML5"
+                            data-lvl="Expert" data-exp="5+ Years"
+                            data-desc="Semantic browser configurations, markup structure, SEO-ready nodes, and local data persistent caching."
+                            data-tags="Markup, Accessibility, Semantics">
+                            <i class="fa-brands fa-html5 node-icon"></i>
+                        </div>
+
+                        <!-- Node.js (Angle: 196deg, Ring: 2) -->
+                        <div class="radar-node active-node"
+                            style="--angle:196deg; --radius:110px; --accent-color:#ff6b35" data-name="Node.js"
+                            data-lvl="Advanced" data-exp="3+ Years"
+                            data-desc="Cross-platform backend runner for constructing fast REST APIs, middleware routines, and workflow tooling."
+                            data-tags="Backend, Runtime, v8">
+                            <i class="fa-solid fa-server node-icon"></i>
+                        </div>
+
+                        <!-- Python (Angle: 229deg, Ring: 1) -->
+                        <div class="radar-node active-node"
+                            style="--angle:229deg; --radius:70px; --accent-color:#3776ab" data-name="Python"
+                            data-lvl="Advanced" data-exp="4+ Years"
+                            data-desc="Data processing engine, backend server scaling, machine learning scripting, and local pipeline automations."
+                            data-tags="Scripting, Data Science, AI">
+                            <i class="fa-brands fa-python node-icon"></i>
+                        </div>
+
+                        <!-- MongoDB (Angle: 262deg, Ring: 3) -->
+                        <div class="radar-node active-node"
+                            style="--angle:262deg; --radius:160px; --accent-color:#47a248" data-name="MongoDB"
+                            data-lvl="Competent" data-exp="2+ Years"
+                            data-desc="NoSQL database for flexible JSON structures, rapid collections indexing, and cluster deployment workflows."
+                            data-tags="Database, NoSQL, JSON Doc">
+                            <i class="fa-solid fa-database node-icon"></i>
+                        </div>
+
+                        <!-- Git (Angle: 295deg, Ring: 2) -->
+                        <div class="radar-node active-node"
+                            style="--angle:295deg; --radius:110px; --accent-color:#f1502f" data-name="Git"
+                            data-lvl="Advanced" data-exp="4+ Years"
+                            data-desc="Distributed version command line routines, modular branches management, and clean project commits history."
+                            data-tags="DVCS, Version Control">
+                            <i class="fa-brands fa-git-alt node-icon"></i>
+                        </div>
+
+                        <!-- GitHub (Angle: 327deg, Ring: 1) -->
+                        <div class="radar-node active-node"
+                            style="--angle:327deg; --radius:70px; --accent-color:#ffffff" data-name="GitHub"
+                            data-lvl="Advanced" data-exp="4+ Years"
+                            data-desc="Remote repositories synchronization, deployment workflows, pull request reviews, and team collaboration."
+                            data-tags="Repository, CI/CD, Actions">
+                            <i class="fa-brands fa-github node-icon"></i>
+                        </div>
+                    </div>
                 </div>
 
-                
+                <!-- Right aspect: System HUD Details Panel -->
+                <div class="lg:col-span-5 flex flex-col justify-center">
+                    <div
+                        class="radar-hud-widget bg-white/[0.01] border border-white/5 rounded-2xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-2xl shadow-black/80 font-mono text-left">
+                        <div class="glass-shine absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full"
+                            style="pointer-events: none;"></div>
+
+                        <!-- Sonar HUD header -->
+                        <div
+                            class="radar-hud-header flex justify-between items-center border-b border-white/5 pb-4 mb-6">
+                            <span class="text-xs uppercase tracking-widest text-[#8e8e93]">// Capability Analyzer</span>
+                            <span
+                                class="text-[9px] px-2 py-0.5 border border-blue-500/20 bg-blue-500/5 rounded text-blue-400 font-bold animate-pulse">ACTIVE
+                                RADAR SCAN</span>
+                        </div>
+
+                        <!-- Current target stats display -->
+                        <div id="radar-skill-details" class="radar-hud-body transition-all duration-300">
+                            <!-- Skill name title -->
+                            <div class="flex justify-between items-end mb-4">
+                                <h3 id="hud-skill-name" class="text-3xl font-black uppercase text-white leading-none">
+                                    Javascript</h3>
+                                <span id="hud-skill-exp" class="text-xs text-blue-400 font-bold">5+ YEARS EXP</span>
+                            </div>
+
+                            <!-- Rating Level bar -->
+                            <div class="mb-4">
+                                <div class="flex justify-between text-xs text-[#8e8e93] mb-1">
+                                    <span>PROFICIENCY LAYER</span>
+                                    <span id="hud-skill-lvl" class="text-white font-bold">Expert</span>
+                                </div>
+                                <div class="w-full bg-white/5 h-2 rounded overflow-hidden relative">
+                                    <div id="hud-skill-bar"
+                                        class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full transition-all duration-500"
+                                        style="width: 90%;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Skill summary text -->
+                            <p id="hud-skill-desc" class="text-xs leading-relaxed text-white/50 mb-6 font-sans">
+                                Core programming language driving frontend animations, asynchronous workflows, and
+                                overall UI reactivity.
+                            </p>
+
+                            <!-- Labels tag footer row -->
+                            <div id="hud-skill-tags" class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                                <span
+                                    class="text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 px-2 py-1 rounded text-white/70">Frontend</span>
+                                <span
+                                    class="text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 px-2 py-1 rounded text-white/70">ES6+</span>
+                                <span
+                                    class="text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 px-2 py-1 rounded text-white/70">Async</span>
+                            </div>
+                        </div>
+
+                        <!-- Inactive helper tip (only shown if needed, otherwise hidden CSS) -->
+                        <div
+                            class="radar-helper-tip text-[10px] text-white/30 text-center tracking-widest mt-8 uppercase font-mono">
+                            Hover over a node on the radar grid to lock query targets
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════════════════════════════════════════
+             PRAXIRE — Currently Building Showcase
+             ════════════════════════════════════════════════════════ -->
+        <section id="praxire" class="praxire-section border-t border-glassBorder relative overflow-hidden">
+
+            <!-- Giant ambient glows -->
+            <div class="praxire-glow-blue" aria-hidden="true"></div>
+            <div class="praxire-glow-purple" aria-hidden="true"></div>
+
+
+            <div class="container relative z-10 py-12">
+                <div class="praxire-grid grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+                    <!-- Left: Interactive Core Network Visualizer -->
+                    <div
+                        class="lg:col-span-6 px-visualizer-parent flex justify-center items-center relative min-h-[560px]">
+                        <div class="px-network-container">
+                            <!-- SVG Connection Lines -->
+                            <svg class="px-network-svg" viewBox="0 0 560 560" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="280" cy="280" r="190" stroke="rgba(255,255,255,0.03)" stroke-width="1"
+                                    stroke-dasharray="4 4" />
+
+                                <!-- Connection paths from nodes to core (cx:280, cy:280) -->
+                                <path id="path-crm" d="M 280 280 L 280 90" class="px-conn-path" />
+                                <path id="path-erp" d="M 280 280 L 461 221" class="px-conn-path" />
+                                <path id="path-digitel-marketing" d="M 280 280 L 392 434" class="px-conn-path" />
+                                <path id="path-ai-automation" d="M 280 280 L 168 434" class="px-conn-path" />
+                                <path id="path-custom-software" d="M 280 280 L 99 221" class="px-conn-path" />
+                            </svg>
+
+                            <!-- Central Core Kernel -->
+                            <div class="px-core-kernel" id="px-core">
+                                <div class="px-core-inner">
+                                    <div class="px-core-glow"></div>
+                                    <div class="px-core-hud text-center p-4">
+                                        <div
+                                            class="px-hud-title font-mono text-[9px] uppercase tracking-widest text-[#8e8e93]">
+                                            Status: Active</div>
+                                        <div class="px-hud-heading font-black text-white text-md uppercase mt-1"
+                                            id="px-core-name">PRAXIRE</div>
+                                        <div class="px-hud-desc text-[10px] text-white/50 mt-2 font-sans"
+                                            id="px-core-desc">Hover node to inspect module status</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Satellite Nodes -->
+                            <!-- CRM (Top, 0deg) -->
+                            <div class="px-sat-node" style="--x:280px; --y:90px; --accent:#3b82f6;" data-name="CRM"
+                                data-desc="Orchestrates client data maps, automation metrics and pipeline operations."
+                                data-status="Connected">
+                                <div class="px-sat-circle"><i class="fa-solid fa-users"></i></div>
+                                <span class="px-sat-label">CRM</span>
+                            </div>
+                            <!-- ERP (Right-Top, 72deg) -->
+                            <div class="px-sat-node" style="--x:461px; --y:221px; --accent:#f97316;" data-name="ERP"
+                                data-desc="Integrates distributed platform resources, settings kernel, and admin configurations."
+                                data-status="Synchronized">
+                                <div class="px-sat-circle"><i class="fa-solid fa-server"></i></div>
+                                <span class="px-sat-label">ERP</span>
+                            </div>
+                            <!-- Billing (Right-Bottom, 144deg) → DIGITEL Marketing -->
+                            <div class="px-sat-node" style="--x:392px; --y:434px; --accent:#10b981;"
+                                data-name="DIGITEL Marketing"
+                                data-desc="Drives audience acquisition, brand visibility, and optimized campaign funnels."
+                                data-status="Encrypted">
+                                <div class="px-sat-circle"><i class="fa-solid fa-bullhorn"></i></div>
+                                <span class="px-sat-label">DIGITEL Marketing</span>
+                            </div>
+                            <!-- AI (Left-Bottom, 216deg) → AI automation -->
+                            <div class="px-sat-node" style="--x:168px; --y:434px; --accent:#8b5cf6;"
+                                data-name="AI automation"
+                                data-desc="Automates complex processes with machine intelligence, custom model agents, and semantic lookup."
+                                data-status="Operational">
+                                <div class="px-sat-circle"><i class="fa-solid fa-brain"></i></div>
+                                <span class="px-sat-label">AI automation</span>
+                            </div>
+                            <!-- HR (Left-Top, 288deg) → Custom software -->
+                            <div class="px-sat-node" style="--x:99px; --y:221px; --accent:#ec4899;"
+                                data-name="Custom software"
+                                data-desc="Architects bespoke digital solutions, modular systems, web apps, and tailor-made toolsets."
+                                data-status="Secured">
+                                <div class="px-sat-circle"><i class="fa-solid fa-laptop-code"></i></div>
+                                <span class="px-sat-label">Custom software</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Editorial Content -->
+                    <div class="lg:col-span-6 text-left flex flex-col justify-center">
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-1.5 border border-white/10 bg-white/[0.02] rounded-full text-[10px] text-white/50 font-mono tracking-widest uppercase mb-6 w-fit">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                            Currently Building
+                        </div>
+
+                        <h2
+                            class="text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
+                            <span
+                                class="block text-xs text-blue-500 font-mono tracking-widest font-bold mb-2 uppercase opacity-85">//
+                                PRAXIRE CORE</span>
+                            Core Build &amp; <span
+                                class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent font-extrabold">Achievement</span>
+                        </h2>
+
+                        <p class="text-md text-white/70 font-sans font-light leading-relaxed mb-8">
+                            Praxire is my primary development achievement and active build. I design, code, and
+                            orchestrate the entire ecosystem—from database structures and backend services to responsive
+                            frontend networks—building a unified enterprise foundation for CRM, ERP, custom software,
+                            digital marketing, and AI automation.
+                        </p>
+
+                        <!-- Core Stats Grid (Mini cards) -->
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-white/[0.02] border border-white/5 p-4 rounded-xl">
+                                <div class="text-[9px] uppercase tracking-widest text-[#8e8e93] font-mono mb-1">
+                                    Architecture</div>
+                                <div class="text-sm font-bold text-white">Modular Micro-Kernel</div>
+                            </div>
+                            <div class="bg-white/[0.02] border border-white/5 p-4 rounded-xl">
+                                <div class="text-[9px] uppercase tracking-widest text-[#8e8e93] font-mono mb-1">State
+                                    Sync</div>
+                                <div class="text-sm font-bold text-white">Real-time RPC Channels</div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Row -->
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <a href="https://praxire.com" target="_blank"
+                                class="btn-magnetic px-6 py-3 bg-white text-black font-bold rounded-full text-xs uppercase tracking-widest hover:bg-white/90 transition-all flex items-center gap-2">
+                                Visit Praxire <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="#contact"
+                                class="btn-magnetic px-6 py-3 border border-white/10 bg-white/5 text-white/80 hover:text-white font-bold rounded-full text-xs uppercase tracking-widest hover:bg-white/10 transition-all">
+                                Contact Builder
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section id="projects" class="section py-24 border-t border-glassBorder">
+            <div class="container">
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="h-[1px] w-12 bg-gradient-to-r from-purple-500 to-transparent"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#8e8e93] font-mono font-bold">THINGS I'VE
+                        MADE</span>
+                </div>
+
+                <!-- Projects Grid Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project 01: Praxire Website -->
+                    <div class="project-card-new group p-8 flex flex-col justify-between min-h-[380px] relative overflow-hidden"
+                        onclick="window.open('https://praxire.com', '_blank')">
+                        <!-- Full Frame Blurred Image Background -->
+                        <div class="absolute inset-0 w-full h-full z-0 overflow-hidden rounded-[20px]">
+                            <img src="Images/praxire_website.png" alt=""
+                                class="w-full h-full object-cover filter blur-[1.5px] opacity-75 group-hover:opacity-95 group-hover:blur-none group-hover:scale-105 transition-all duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-[#0a0a0c]/10 via-[#0a0a0c]/45 to-[#0a0a0c]/80">
+                            </div>
+                        </div>
+
+                        <!-- Card Content (floating on top of visual) -->
+                        <div class="relative z-10 flex flex-col justify-between h-full w-full">
+                            <div class="flex flex-col gap-4 text-left">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-xl font-bold text-white tracking-tight leading-snug">Praxire Website
+                                    </h3>
+                                    <span class="text-3xl font-black text-white/5 font-mono select-none">01</span>
+                                </div>
+                                <p class="text-xs text-white/70 leading-relaxed max-w-[90%]">A high-end, editorial
+                                    agency portfolio website representing the Praxire ecosystem with text masking,
+                                    particle networks, and fluid scroll physics.</p>
+                            </div>
+
+                            <div class="flex flex-col gap-6 mt-12">
+                                <div class="flex flex-wrap gap-2 text-left">
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">HTML5</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">CSS3</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">JavaScript</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">GSAP</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="text-xs text-[#a78bfa]/80 group-hover:text-[#a78bfa] transition-colors font-mono">View
+                                        Project →</span>
+                                    <a href="https://praxire.com" target="_blank"
+                                        class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/25 text-white/80 group-hover:text-accent group-hover:border-accent/40 bg-white/5 hover:bg-white/10 transition-all">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 02: Praxire ERP -->
+                    <div class="project-card-new group p-8 flex flex-col justify-between min-h-[380px] relative overflow-hidden"
+                        onclick="window.open('https://erp-praxire.vercel.app/', '_blank')">
+                        <!-- Full Frame Blurred Image Background -->
+                        <div class="absolute inset-0 w-full h-full z-0 overflow-hidden rounded-[20px]">
+                            <img src="Images/erp_praxire.png" alt=""
+                                class="w-full h-full object-cover filter blur-[1.5px] opacity-75 group-hover:opacity-95 group-hover:blur-none group-hover:scale-105 transition-all duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-[#0a0a0c]/10 via-[#0a0a0c]/45 to-[#0a0a0c]/80">
+                            </div>
+                        </div>
+
+                        <!-- Card Content (floating on top of visual) -->
+                        <div class="relative z-10 flex flex-col justify-between h-full w-full">
+                            <div class="flex flex-col gap-4 text-left">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-xl font-bold text-white tracking-tight leading-snug">Praxire ERP
+                                    </h3>
+                                    <span class="text-3xl font-black text-white/5 font-mono select-none">02</span>
+                                </div>
+                                <p class="text-xs text-white/70 leading-relaxed max-w-[90%]">An enterprise resource
+                                    planning dashboard managing client portals, attendance logs, employee directories,
+                                    and real-time operations trackers.</p>
+                            </div>
+
+                            <div class="flex flex-col gap-6 mt-12">
+                                <div class="flex flex-wrap gap-2 text-left">
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">React</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">Node.js</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">Tailwind
+                                        CSS</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">MongoDB</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="text-xs text-[#a78bfa]/80 group-hover:text-[#a78bfa] transition-colors font-mono">View
+                                        Project →</span>
+                                    <a href="https://erp-praxire.vercel.app/" target="_blank"
+                                        class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/25 text-white/80 group-hover:text-accent group-hover:border-accent/40 bg-white/5 hover:bg-white/10 transition-all">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 03: Dropzii -->
+                    <div class="project-card-new group p-8 flex flex-col justify-between min-h-[380px] relative overflow-hidden"
+                        onclick="window.open('https://dropzii.in/', '_blank')">
+                        <!-- Full Frame Blurred Image Background -->
+                        <div class="absolute inset-0 w-full h-full z-0 overflow-hidden rounded-[20px]">
+                            <img src="Images/dropzii.png" alt=""
+                                class="w-full h-full object-cover filter blur-[1.5px] opacity-75 group-hover:opacity-95 group-hover:blur-none group-hover:scale-105 transition-all duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-[#0a0a0c]/10 via-[#0a0a0c]/45 to-[#0a0a0c]/80">
+                            </div>
+                        </div>
+
+                        <!-- Card Content (floating on top of visual) -->
+                        <div class="relative z-10 flex flex-col justify-between h-full w-full">
+                            <div class="flex flex-col gap-4 text-left">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-xl font-bold text-white tracking-tight leading-snug">Dropzii</h3>
+                                    <span class="text-3xl font-black text-white/5 font-mono select-none">03</span>
+                                </div>
+                                <p class="text-xs text-white/70 leading-relaxed max-w-[90%]">A premium one-way taxi and
+                                    outstation travel booking platform covering South India with real-time fare
+                                    calculators and route schedulers.</p>
+                            </div>
+
+                            <div class="flex flex-col gap-6 mt-12">
+                                <div class="flex flex-wrap gap-2 text-left">
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">PHP</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">SQL</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">Bootstrap</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">SEO</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="text-xs text-[#a78bfa]/80 group-hover:text-[#a78bfa] transition-colors font-mono">View
+                                        Project →</span>
+                                    <a href="https://dropzii.in/" target="_blank"
+                                        class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/25 text-white/80 group-hover:text-accent group-hover:border-accent/40 bg-white/5 hover:bg-white/10 transition-all">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 04: My Dream Surprise -->
+                    <div class="project-card-new group p-8 flex flex-col justify-between min-h-[380px] relative overflow-hidden"
+                        onclick="window.open('https://mydreamsurprise.com/', '_blank')">
+                        <!-- Full Frame Blurred Image Background -->
+                        <div class="absolute inset-0 w-full h-full z-0 overflow-hidden rounded-[20px]">
+                            <img src="Images/mydreamsurprise.png" alt=""
+                                class="w-full h-full object-cover filter blur-[1.5px] opacity-75 group-hover:opacity-95 group-hover:blur-none group-hover:scale-105 transition-all duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-[#0a0a0c]/10 via-[#0a0a0c]/45 to-[#0a0a0c]/80">
+                            </div>
+                        </div>
+
+                        <!-- Card Content (floating on top of visual) -->
+                        <div class="relative z-10 flex flex-col justify-between h-full w-full">
+                            <div class="flex flex-col gap-4 text-left">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-xl font-bold text-white tracking-tight leading-snug">My Dream
+                                        Surprise</h3>
+                                    <span class="text-3xl font-black text-white/5 font-mono select-none">04</span>
+                                </div>
+                                <p class="text-xs text-white/70 leading-relaxed max-w-[90%]">An immersive event booking
+                                    e-commerce platform offering personalized party planning, bespoke decoration
+                                    choices, and slot booking.</p>
+                            </div>
+
+                            <div class="flex flex-col gap-6 mt-12">
+                                <div class="flex flex-wrap gap-2 text-left">
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">WordPress</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">WooCommerce</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">Elementor</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="text-xs text-[#a78bfa]/80 group-hover:text-[#a78bfa] transition-colors font-mono">View
+                                        Project →</span>
+                                    <a href="https://mydreamsurprise.com/" target="_blank"
+                                        class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/25 text-white/80 group-hover:text-accent group-hover:border-accent/40 bg-white/5 hover:bg-white/10 transition-all">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 05: Techspark Academy -->
+                    <div class="project-card-new group p-8 flex flex-col justify-between min-h-[380px] relative overflow-hidden"
+                        onclick="window.open('https://techsparkacademy.in/', '_blank')">
+                        <!-- Full Frame Blurred Image Background -->
+                        <div class="absolute inset-0 w-full h-full z-0 overflow-hidden rounded-[20px]">
+                            <img src="Images/techsparkacademy.png" alt=""
+                                class="w-full h-full object-cover filter blur-[1.5px] opacity-75 group-hover:opacity-95 group-hover:blur-none group-hover:scale-105 transition-all duration-700">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-[#0a0a0c]/10 via-[#0a0a0c]/45 to-[#0a0a0c]/80">
+                            </div>
+                        </div>
+
+                        <!-- Card Content (floating on top of visual) -->
+                        <div class="relative z-10 flex flex-col justify-between h-full w-full">
+                            <div class="flex flex-col gap-4 text-left">
+                                <div class="flex justify-between items-start">
+                                    <h3 class="text-xl font-bold text-white tracking-tight leading-snug">Techspark
+                                        Academy</h3>
+                                    <span class="text-3xl font-black text-white/5 font-mono select-none">05</span>
+                                </div>
+                                <p class="text-xs text-white/70 leading-relaxed max-w-[90%]">An educational landing
+                                    platform and LMS for AI, data science, and tech coding courses, coordinating online
+                                    webinars and internships.</p>
+                            </div>
+
+                            <div class="flex flex-col gap-6 mt-12">
+                                <div class="flex flex-wrap gap-2 text-left">
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">HTML5</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">CSS3</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">JavaScript</span>
+                                    <span
+                                        class="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/10 text-purple-300 font-mono backdrop-blur-sm">UI/UX</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span
+                                        class="text-xs text-[#a78bfa]/80 group-hover:text-[#a78bfa] transition-colors font-mono">View
+                                        Project →</span>
+                                    <a href="https://techsparkacademy.in/" target="_blank"
+                                        class="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/25 text-white/80 group-hover:text-accent group-hover:border-accent/40 bg-white/5 hover:bg-white/10 transition-all">
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Chronology / Timeline -->
+        <section id="timeline" class="section py-24 border-t border-glassBorder">
+            <div class="container">
+                <!-- Section Title Header matching the reference -->
+                <div class="flex items-center gap-4 mb-12">
+                    <div class="h-[1px] w-12 bg-gradient-to-r from-purple-500 to-transparent"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#8e8e93] font-mono font-bold">HOW I GOT
+                        HERE</span>
+                </div>
+
+                <!-- Education Grid (Top Row) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <!-- Card 1: B.E. Computer Science -->
+                    <div class="edu-card">
+                        <span class="edu-date">2024 - 2028</span>
+                        <h3 class="edu-title">B.E. Computer Science</h3>
+                        <p class="edu-school">Arunai Engineering College, Tiruvannamalai</p>
+                        <p class="edu-gpa text-xs text-[#a78bfa] mt-2 font-mono">CGPA: 8.58 (Upto 2nd Semester)</p>
+                    </div>
+                    <!-- Card 2: Higher Secondary -->
+                    <div class="edu-card">
+                        <span class="edu-date">COMPLETED / 2024</span>
+                        <h3 class="edu-title">Higher Secondary Education</h3>
+                        <p class="edu-school">Vision Matric Higher Secondary School, Tiruvannamalai</p>
+                        <p class="edu-gpa text-xs text-[#a78bfa] mt-2 font-mono">Percentage: 72% (State Board)</p>
+                    </div>
+                    <!-- Card 3: Secondary -->
+                    <div class="edu-card">
+                        <span class="edu-date">COMPLETED / 2022</span>
+                        <h3 class="edu-title">Secondary Education</h3>
+                        <p class="edu-school">Vision Matric Highest Secondary School, Tiruvannamalai</p>
+                        <p class="edu-gpa text-xs text-[#a78bfa] mt-2 font-mono">Percentage: 81% (State Board)</p>
+                    </div>
+                </div>
+
+
+                <!-- Section Subheader for Experience -->
+                <div class="flex items-center gap-4 mt-12 mb-8">
+                    <div class="h-[1px] w-12 bg-gradient-to-r from-purple-500 to-transparent"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#8e8e93] font-mono font-bold">PROFESSIONAL
+                        EXPERIENCE</span>
+                </div>
+
+                <!-- Experience Grid (Bottom Row) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Exp Card 1: Praxire -->
+                    <div class="cert-card">
+                        <div class="cert-icon-wrap">
+                            <i class="fa-solid fa-briefcase select-none"></i>
+                        </div>
+                        <span class="cert-date">OCT 2025 – PRESENT</span>
+                        <h3 class="cert-title">Freelance Frontend Developer</h3>
+                        <p class="cert-org">Praxire</p>
+                        <p class="cert-desc">Collaborating with a development team to build and deliver 6+ full-stack
+                            web projects for clients. Developed responsive and dynamic user interfaces using React.js,
+                            JavaScript, HTML, CSS, and Tailwind CSS, integrated front-end applications with backend
+                            services, and successfully delivered high-quality client websites ensuring performance,
+                            usability, and cross-device compatibility.</p>
+                    </div>
+                    <!-- Exp Card 2: Apexplanet -->
+                    <div class="cert-card">
+                        <div class="cert-icon-wrap">
+                            <i class="fa-solid fa-briefcase select-none"></i>
+                        </div>
+                        <span class="cert-date">FEB 2026 – PRESENT</span>
+                        <h3 class="cert-title">Frontend Developer Intern</h3>
+                        <p class="cert-org">Apexplanet Software Private Limited</p>
+                        <p class="cert-desc">Developed responsive web pages using HTML, CSS, and JavaScript,
+                            implementing user-friendly UI components and enhancing overall website usability across
+                            different devices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section py-24 border-t border-glassBorder">
+            <div class="container">
+                <div class="text-center mb-12">
+                    <span class="text-xs uppercase tracking-widest text-[#8e8e93] font-mono block mb-2">// Connection
+                        Center</span>
+                    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">Let's Craft Together</h2>
+                </div>
+
+                <!-- Glow follows cursor block with split grid layout -->
+                <div class="contact-glass-box" id="contact-glow-box">
+                    <div class="contact-spotlight" id="spotlight"></div>
+
+                    <div class="relative z-10">
+
+                        <form class="contact-form" id="contact-form">
+
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <input type="text" id="name" name="name" placeholder=" " required />
+                                    <label for="name">Your Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="email" id="email" name="email" placeholder=" " required />
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="subject" name="subject" placeholder=" " required />
+                                <label for="subject">The Project Subject</label>
+                            </div>
+                            <div class="input-group">
+                                <textarea id="message" name="message" placeholder=" " required></textarea>
+                                <label for="message">Describe the Vision</label>
+                            </div>
+
+                            <div class="btn-submit-container">
+                                <button type="submit" class="btn-magnetic btn-primary px-10" id="btn-submit">
+                                    Dispatch Vision <i class="fa-solid fa-paper-plane ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-glassBorder bg-black py-16">
+        <div class="container footer-hull flex flex-col md:flex-row justify-between items-center">
+            <div class="footer-logo mb-6 md:mb-0">
+                MOHAMED<span>.DEV</span>
+            </div>
+            <div class="footer-links mb-6 md:mb-0">
+                <a href="https://github.com/Mohamed2006tvm" target="_blank" aria-label="GitHub"><i
+                        class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/mohamed-m-719176328" target="_blank" aria-label="LinkedIn"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/mr_dema_" target="_blank" aria-label="Instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
+            </div>
+            <div class="footer-copy text-sm text-[#8e8e93]">
+                &copy; 2026 Mohamed M. Luxury developer portfolio experience.
             </div>
         </div>
-    </section>            
-    <section id="projects" class="fade-up">
-        <div class="project-container">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project-card slide-in delay-1">
-                    <h3>QR Code Generator</h3>
-                    <p>Web-based QR code generator from any text using HTML + JS.</p>
-                    <a href="https://txt2-qrcodeorg.netlify.app/"><input type="button" value="View More"></a>
-                </div>
-                <div class="project-card slide-in">
-                    <h3>Speech to Text Tool</h3>
-                    <p>A converter that transforms speech input into text using web APIs.</p>
-                    <a href="https://spch2-txtorg.netlify.app/"><input type="button" value="View More"></a>
-                </div>
-                <div class="project-card slide-in delay-2">
-                    <h3>Text to Speech Tool</h3>
-                    <p>Translates input text into multiple languages with ease.</p>
-                    <a href="https://txt2-spchorg.netlify.app/"><input type="button" value="View More"></a>
-                </div>
-                
-                <div class="project-card slide-in delay-2">
-                    <h3>Landing Page</h3>
-                    <p>This is the landing page using pure HTML & CSS with responsive design</p>
-                    <a href="https://landing-page-besnik.netlify.app"><input type="button" value="View More"></a>
-                </div>
-                <div class="project-card slide-in delay-3">
-                    <h3>Style Fusion</h3>
-                    <p>Hair style web application for marketing using HTML & CSS</p>
-                    <a href="https://stylefusionorg.netlify.app/"><input type="button" value="View More"></a>
-                </div>
-                <div class="project-card slide-in delay-4">
-                    <h3>Landing Page</h3>
-                    <p>This is the landing page using HTML & TAILWIND CSS </p>
-                    <a href="https://landing-page-tailwind-landify.netlify.app/"><input type="button" value="View More"></a>
-                </div>
-        </div>
-    </section>
-
-    <section id="contact" class="fade-up">
-        <div class="contact-container">
-            <h2>Contact</h2>
-            <p>If you have any questions or would like to connect, feel free to reach out!</p>
-            <div class="contact-info">
-                <div class="contact-item slide-in">
-                    <i class="fa-solid fa-envelope"></i>
-                    <p>Email : <a href="mailto:mohamed2006tvm@gmail.com">Tap to Mail</a></p>
-                </div>
-                <!-- <div class="contact-item slide-in delay-1">
-                    <i class="fa-solid fa-phone"></i>
-                    <p>Phone : <a href="tel:+919786226688">Tap to Call</a></p>
-                </div> -->
-                <div class="contact-item slide-in delay-2">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p>Location : Tiruvannamalai, Tamil Nadu</p>
-                </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>Created by Mohamed M</p>
-            <p>&copy; 2025.  All rights reserved.</p>
-        </div>
-
     </footer>
-</body>
-<script>
-    // Optional: Scroll to top on page load if there's a hash in the URL
-    window.addEventListener('load', function() {
-        if (window.location.hash) {
-            window.scrollTo({ top: 0, behavior: 'auto' });
-            history.replaceState(null, null, ' ');
-        }
-    });
 
-    // Toggle mobile nav
-    document.getElementById('menu-icon').onclick = function () {
-        var nav = document.getElementById('main-nav');
-        nav.classList.toggle('active');
-    };
+    <!-- Floating "Available for Work" Beacon -->
+    <div class="work-beacon" id="work-beacon">
+        <span class="work-beacon-dot"></span>
+        <span class="work-beacon-text">Available for Work</span>
+        <i class="fa-solid fa-arrow-up-right text-[10px] opacity-50"></i>
+    </div>
 
-    // Smooth scroll for nav links
-    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-            }
-            // Optional: close mobile nav after click
-            document.getElementById('main-nav').classList.remove('active');
+    <!-- Scripts: GSAP, ScrollTrigger, Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+
+    <!-- Scripting for Canvas Landing Morph + GSAP Scroll animations -->
+    <script>
+        // Setup GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Lenis Smooth Scroll Setup
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // luxury exponential damping
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            touchMultiplier: 2,
+            infinite: false,
         });
-    });
-</script>
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Connect Lenis to GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        // Custom Cursor follower logic
+        const cursor = document.getElementById('cursor');
+        const cursorGlow = document.getElementById('cursor-glow');
+
+        const hasMobilePointer = window.matchMedia('(pointer: coarse)').matches;
+        if (!hasMobilePointer && cursor && cursorGlow) {
+            document.addEventListener('mousemove', (e) => {
+                gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.05, cubicBezier: 'none' });
+                gsap.to(cursorGlow, { x: e.clientX, y: e.clientY, duration: 0.15 });
+            });
+
+            document.querySelectorAll('a, button, .skill-glass-card, .project-apple-card, #menu-toggle').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    gsap.to(cursor, { scale: 1.5, backgroundColor: '#3B82F6', duration: 0.2 });
+                    gsap.to(cursorGlow, { scale: 1.6, borderColor: '#7C3AED', backgroundColor: 'rgba(124, 58, 237, 0.05)', duration: 0.2 });
+                });
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(cursor, { scale: 1, backgroundColor: '#ffffff', duration: 0.2 });
+                    gsap.to(cursorGlow, { scale: 1, borderColor: 'rgba(255,255,255,0.2)', backgroundColor: 'transparent', duration: 0.2 });
+                });
+            });
+        }
+
+        // Praxire Network Visualizer Interactive Logic
+        const satNodes = document.querySelectorAll('.px-sat-node');
+        const coreKernel = document.getElementById('px-core');
+        const coreName = document.getElementById('px-core-name');
+        const coreDesc = document.getElementById('px-core-desc');
+        const coreGlow = coreKernel ? coreKernel.querySelector('.px-core-glow') : null;
+
+        if (satNodes.length > 0 && coreKernel && coreName && coreDesc) {
+            satNodes.forEach(node => {
+                node.addEventListener('mouseenter', () => {
+                    const name = node.getAttribute('data-name');
+                    const desc = node.getAttribute('data-desc');
+                    const status = node.getAttribute('data-status');
+                    const color = node.getAttribute('style').match(/--accent:\s*(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)/)[1];
+
+                    // Set active status text
+                    coreName.textContent = name;
+                    coreDesc.textContent = desc;
+
+                    // Light up core border & glow
+                    coreKernel.style.borderColor = color;
+                    coreKernel.style.boxShadow = `0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px ${color}44`;
+                    if (coreGlow) {
+                        coreGlow.style.background = `radial-gradient(circle, ${color}22 0%, transparent 75%)`;
+                    }
+
+                    // Activate matching SVG path
+                    const pathId = `path-${name.toLowerCase().replace(/\s+/g, '-')}`;
+                    const pathEl = document.getElementById(pathId);
+                    if (pathEl) {
+                        pathEl.classList.add('active', 'flow-pulse');
+                        pathEl.style.setProperty('--active-accent', color);
+                    }
+                });
+
+                node.addEventListener('mouseleave', () => {
+                    // Reset core text
+                    coreName.textContent = 'PRAXIRE';
+                    coreDesc.textContent = 'Hover node to inspect module status';
+
+                    // Reset core styles
+                    coreKernel.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                    coreKernel.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(59, 130, 246, 0.05)';
+                    if (coreGlow) {
+                        coreGlow.style.background = 'radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 75%)';
+                    }
+
+                    // Reset SVG path
+                    const name = node.getAttribute('data-name');
+                    const pathId = `path-${name.toLowerCase()}`;
+                    const pathEl = document.getElementById(pathId);
+                    if (pathEl) {
+                        pathEl.classList.remove('active', 'flow-pulse');
+                        pathEl.style.removeProperty('--active-accent');
+                    }
+                });
+            });
+        }
+
+        // Magnetic Buttons Effect
+        document.querySelectorAll('.btn-magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const bounding = btn.getBoundingClientRect();
+                const x = e.clientX - bounding.left - bounding.width / 2;
+                const y = e.clientY - bounding.top - bounding.height / 2;
+
+                // magnetic drag
+                gsap.to(btn, {
+                    x: x * 0.45,
+                    y: y * 0.45,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                // snap back
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Interactive 3D Parallax on Portrait Frame
+        const portraitCard = document.getElementById('parallax-portrait');
+        const portraitImg = document.getElementById('portrait-img');
+        if (portraitCard && portraitImg && !hasMobilePointer) {
+            document.addEventListener('mousemove', (e) => {
+                if (window.scrollY > 200) {
+                    gsap.to([portraitCard, portraitImg], {
+                        rotateX: 0,
+                        rotateY: 0,
+                        x: 0,
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                    return;
+                }
+
+                const { clientX, clientY } = e;
+                const xRel = (clientX / window.innerWidth - 0.5) * 35; // deg pitch
+                const yRel = (clientY / window.innerHeight - 0.5) * 35;
+
+                gsap.to(portraitCard, {
+                    rotateY: xRel,
+                    rotateX: -yRel,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+
+                gsap.to(portraitImg, {
+                    x: xRel * 0.5,
+                    y: yRel * 0.5,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+
+            portraitCard.addEventListener('mouseleave', () => {
+                gsap.to([portraitCard, portraitImg], {
+                    rotateX: 0,
+                    rotateY: 0,
+                    x: 0,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+            });
+        }
+
+        // Stats Glass Cards Spotlight Cursor Glow
+        document.querySelectorAll('.stat-glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // Technical Toolkit Radar Interactive Soundings
+        const radarNodes = document.querySelectorAll('.radar-node');
+        const hudName = document.getElementById('hud-skill-name');
+        const hudExp = document.getElementById('hud-skill-exp');
+        const hudLvl = document.getElementById('hud-skill-lvl');
+        const hudBar = document.getElementById('hud-skill-bar');
+        const hudDesc = document.getElementById('hud-skill-desc');
+        const hudTags = document.getElementById('hud-skill-tags');
+        const hudBody = document.getElementById('radar-skill-details');
+
+        function updateRadarHUD(node) {
+            const name = node.getAttribute('data-name');
+            const exp = node.getAttribute('data-exp');
+            const lvl = node.getAttribute('data-lvl');
+            const desc = node.getAttribute('data-desc');
+            const tags = node.getAttribute('data-tags').split(',');
+            const color = node.style.getPropertyValue('--accent-color');
+
+            // Quick display loading flash
+            hudBody.classList.add('hud-loading');
+
+            setTimeout(() => {
+                hudName.innerText = name;
+                hudName.style.color = color;
+                hudExp.innerText = `${exp.toUpperCase()} EXP`;
+                hudExp.style.color = color;
+                hudLvl.innerText = lvl;
+                hudDesc.innerText = desc;
+
+                // Map proficiency width
+                let widthPct = '50%';
+                if (lvl === 'Expert') widthPct = '95%';
+                else if (lvl === 'Advanced') widthPct = '80%';
+                else if (lvl === 'Competent') widthPct = '65%';
+
+                hudBar.style.width = widthPct;
+                hudBar.style.background = `linear-gradient(90deg, ${color} 0%, rgba(59, 130, 246, 0.4) 100%)`;
+
+                // Update tags list
+                hudTags.innerHTML = '';
+                tags.forEach(tag => {
+                    const tagSpan = document.createElement('span');
+                    tagSpan.className = 'text-[9px] uppercase tracking-wider bg-white/5 border border-white/10 px-2 py-1 rounded text-white/70';
+                    tagSpan.innerText = tag.trim();
+                    hudTags.appendChild(tagSpan);
+                });
+
+                hudBody.classList.remove('hud-loading');
+            }, 80);
+        }
+
+        radarNodes.forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                updateRadarHUD(node);
+
+                // Add minor glow pulse
+                node.classList.add('swept-glow');
+            });
+
+            node.addEventListener('mouseleave', () => {
+                node.classList.remove('swept-glow');
+            });
+        });
+
+        // Initialize HUD with first node values (React)
+        if (radarNodes.length > 0) {
+            updateRadarHUD(radarNodes[0]);
+        }
+
+
+        // About Section 3D Interactive Parallax on scroll target
+        const aboutSection = document.getElementById('about');
+        const aboutHalo = document.querySelector('.portrait-halo');
+        const orbitWraps = document.querySelectorAll('.orbit-wrap');
+
+        if (aboutSection && !hasMobilePointer) {
+            window.addEventListener('mousemove', (e) => {
+                const rect = aboutSection.getBoundingClientRect();
+                // Check if about section is partially/fully in viewport
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const { clientX, clientY } = e;
+
+                    // Calculate coordinates normalized -0.5 to 0.5 relative to section center
+                    const xRel = (clientX / window.innerWidth - 0.5);
+                    const yRel = (clientY / window.innerHeight - 0.5);
+
+                    // Flare coordinates for background halo
+                    if (aboutHalo) {
+                        gsap.to(aboutHalo, {
+                            x: xRel * 60,
+                            y: yRel * 60,
+                            duration: 1.2,
+                            ease: "power2.out"
+                        });
+                    }
+
+                    // Move orbit badge capsules in dynamic directions
+                    orbitWraps.forEach((wrap, index) => {
+                        const multiplier = (index % 2 === 0) ? 25 : -25;
+                        gsap.to(wrap, {
+                            x: xRel * multiplier,
+                            y: yRel * multiplier,
+                            duration: 0.8,
+                            ease: "power2.out"
+                        });
+                    });
+                }
+            });
+        }
+
+        // Active Spotlight Panel Glow
+        const spotlightBox = document.getElementById('contact-glow-box');
+        const spotlight = document.getElementById('spotlight');
+        if (spotlightBox && spotlight) {
+            spotlightBox.addEventListener('mousemove', (e) => {
+                const rect = spotlightBox.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                spotlightBox.style.setProperty('--cursor-x', `${x}px`);
+                spotlightBox.style.setProperty('--cursor-y', `${y}px`);
+            });
+        }
+
+        // Mobile Menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (menuToggle && mobileNav) {
+            menuToggle.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+                menuToggle.querySelector('i').classList.toggle('fa-bars');
+                menuToggle.querySelector('i').classList.toggle('fa-xmark');
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.add('hidden');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                    menuToggle.querySelector('i').classList.remove('fa-xmark');
+                });
+            });
+        }
+
+        /* -----------------------------------------------------------
+           AWWWARDS LANDING PARTICLE MORPH INTRO ENGINE
+           ----------------------------------------------------------- */
+
+        const canvas = document.getElementById('intro-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            centerX = width / 2;
+            centerY = height / 2;
+        });
+
+        let particles = [];
+        let portraitPoints = [];
+        let centerX = width / 2;
+        let centerY = height / 2;
+        const focalLength = 400;
+
+        const animationState = {
+            morphProgress: 0, // 0 is sphere, 1 is portrait
+            sphereScale: 1.2,
+            particleAlpha: 0,
+            noiseScale: 1
+        };
+
+        // Load human portrait image and extract target points
+        const targetImage = new Image();
+        targetImage.src = 'Images/WhatsApp%20Image%202026-06-21%20at%206.09.06%20PM.jpeg';
+        targetImage.onload = () => {
+            const samplingCanvas = document.createElement('canvas');
+            const samplingCtx = samplingCanvas.getContext('2d');
+            const sampleW = 90;
+            const sampleH = 110;
+            samplingCanvas.width = sampleW;
+            samplingCanvas.height = sampleH;
+
+            try {
+                // Draw image scaled
+                samplingCtx.drawImage(targetImage, 0, 0, sampleW, sampleH);
+                const imgData = samplingCtx.getImageData(0, 0, sampleW, sampleH);
+                const pixels = imgData.data;
+
+                // Gather valid contrast points representing the developer avatar
+                for (let y = 0; y < sampleH; y++) {
+                    for (let x = 0; x < sampleW; x++) {
+                        const idx = (y * sampleW + x) * 4;
+                        const r = pixels[idx];
+                        const g = pixels[idx + 1];
+                        const b = pixels[idx + 2];
+                        const a = pixels[idx + 3];
+
+                        // Filter portrait pixels (portrait is navy suit, dark hair, skin. Background is solid white r,g,b > 240)
+                        if (a > 100 && (r < 235 || g < 235 || b < 235)) {
+                            portraitPoints.push({
+                                tx: (x - sampleW / 2) * 5.2, // scale dimensions
+                                ty: (y - sampleH / 2) * 5.2,
+                                tz: (Math.random() - 0.5) * 20, // subtle 3D depth
+                                col: `rgba(${r}, ${g}, ${b}, `
+                            });
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn("Canvas image pixel access blocked (likely file:// CORS). Generating mathematical head-and-shoulders silhouette fallback.", err);
+                for (let i = 0; i < 2500; i++) {
+                    const isHead = Math.random() > 0.45;
+                    let tx, ty;
+                    if (isHead) {
+                        const theta = Math.random() * Math.PI * 2;
+                        const r = Math.random() * 95;
+                        tx = r * Math.cos(theta);
+                        ty = -100 + r * Math.sin(theta) * 1.1;
+                    } else {
+                        const py = Math.random() * 180 - 15;
+                        const w = 260 - (py * 0.4);
+                        tx = (Math.random() - 0.5) * w;
+                        ty = py;
+                    }
+                    portraitPoints.push({
+                        tx: tx,
+                        ty: ty,
+                        tz: (Math.random() - 0.5) * 20,
+                        col: 'rgba(59, 130, 246, '
+                    });
+                }
+            }
+
+            // Shuffle target points list to make particle dispersion look organic
+            portraitPoints = portraitPoints.sort(() => Math.random() - 0.5);
+            initializeParticles();
+        };
+
+        targetImage.onerror = () => {
+            console.warn("Portrait image failed to load. Generating fallback mathematical silhouette.");
+            for (let i = 0; i < 2500; i++) {
+                const isHead = Math.random() > 0.45;
+                let tx, ty;
+                if (isHead) {
+                    const theta = Math.random() * Math.PI * 2;
+                    const r = Math.random() * 95;
+                    tx = r * Math.cos(theta);
+                    ty = -100 + r * Math.sin(theta) * 1.1;
+                } else {
+                    const py = Math.random() * 180 - 15;
+                    const w = 260 - (py * 0.4);
+                    tx = (Math.random() - 0.5) * w;
+                    ty = py;
+                }
+                portraitPoints.push({
+                    tx: tx,
+                    ty: ty,
+                    tz: (Math.random() - 0.5) * 20,
+                    col: 'rgba(59, 130, 246, '
+                });
+            }
+            initializeParticles();
+        };
+
+        function initializeParticles() {
+            // Allocate 6000 particles
+            const particleNum = 4500;
+
+            for (let i = 0; i < particleNum; i++) {
+                // Sphere math coordinates
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(Math.random() * 2 - 1);
+                const radius = 170 + Math.random() * 30; // Radius size of sphere
+
+                const sx = radius * Math.sin(phi) * Math.cos(theta);
+                const sy = radius * Math.sin(phi) * Math.sin(theta);
+                const sz = radius * Math.cos(phi);
+
+                // Assign target coordinates (repeat targets if particles double)
+                const targetRef = portraitPoints[i % portraitPoints.length];
+
+                particles.push({
+                    sx: sx,
+                    sy: sy,
+                    sz: sz,
+                    // Dynamic rotating 3D states
+                    x: sx,
+                    y: sy,
+                    z: sz,
+
+                    tx: targetRef ? targetRef.tx : sx * 2, // If target missing, blow outwards
+                    ty: targetRef ? targetRef.ty : sy * 2,
+                    tz: targetRef ? targetRef.tz : sz * 2,
+
+                    col: targetRef ? targetRef.col : 'rgba(59, 130, 246, ',
+                    size: 1 + Math.random() * 1.5
+                });
+            }
+
+            // Kick off opening scene timeline
+            startIntroTimeline();
+        }
+
+        let rotX = 0;
+        let rotY = 0;
+        let finalRevealFired = false;
+
+        function startIntroTimeline() {
+            const tl = gsap.timeline();
+
+            // Fade in particles quickly
+            tl.to(animationState, {
+                particleAlpha: 0.85,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+
+            // Spin & collapse sphere to create heavy gravitational pull
+            tl.to(animationState, {
+                sphereScale: 0.8,
+                duration: 1.0,
+                ease: "power3.inOut"
+            }, "-=0.4");
+
+            // Morph into portrait!
+            tl.to(animationState, {
+                morphProgress: 1,
+                sphereScale: 1.0,
+                duration: 1.8,
+                ease: "power3.inOut"
+            }, "+=0.1");
+
+            // Cinematic Name presentation blur-reveal (starts early to load the name quickly)
+            tl.to("#reveal-text", {
+                opacity: 1,
+                filter: "blur(0px)",
+                duration: 1.0,
+                ease: "power2.out"
+            }, "-=2.2");
+
+            // Disperse particles slightly, fade screen, reveal hero sections
+            tl.to("#reveal-text", {
+                opacity: 0,
+                filter: "blur(12px)",
+                duration: 0.6,
+                ease: "power2.in"
+            }, "+=0.6");
+
+            tl.to(animationState, {
+                particleAlpha: 0,
+                sphereScale: 1.4,
+                duration: 1.0,
+                ease: "power3.inOut",
+                onStart: () => {
+                    revealRealPortfolio();
+                }
+            }, "-=0.2");
+
+            tl.to("#reveal-cover", {
+                yPercent: -100,
+                duration: 1.0,
+                ease: "power4.inOut",
+                onComplete: () => {
+                    document.getElementById('reveal-cover').remove();
+                }
+            }, "-=0.7");
+
+            animateParticlesLoop();
+        }
+
+        function revealRealPortfolio() {
+            if (finalRevealFired) return;
+            finalRevealFired = true;
+
+            // Trigger hero section elements cinematic reveals (faster durations)
+            gsap.timeline()
+                .from(".navbar", { opacity: 0, y: -20, duration: 0.8, ease: "power3.out" })
+                .from(".founder-badge", { opacity: 0, y: 15, duration: 0.7, ease: "power3.out" }, "-=0.6")
+                .from(".hero-title span", { y: 60, opacity: 0, stagger: 0.1, duration: 0.9, ease: "power4.out" }, "-=0.7")
+                .from(".hero-desc", { opacity: 0, y: 15, duration: 0.8, ease: "power3.out" }, "-=0.8")
+                .from(".hero-buttons", { opacity: 0, y: 15, duration: 0.8, ease: "power3.out" }, "-=0.8")
+                .from(".hero-image-wrapper", { scale: 0.85, opacity: 0, filter: "blur(8px)", duration: 1.2, ease: "power4.out" }, "-=1.0");
+        }
+
+        // Particle rendering render loop
+        function animateParticlesLoop() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Sphere spinning coefficients
+            if (animationState.morphProgress < 0.98) {
+                rotX += 0.005;
+                rotY += 0.007;
+            } else {
+                rotX += (0 - rotX) * 0.05; // Lock rotation straight for clear portrait render
+                rotY += (0 - rotY) * 0.05;
+            }
+
+            const cosX = Math.cos(rotX);
+            const sinX = Math.sin(rotX);
+            const cosY = Math.cos(rotY);
+            const sinY = Math.sin(rotY);
+
+            const mp = animationState.morphProgress;
+            const sa = animationState.sphereScale;
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                // Sphere coordinates (SX, SY, SZ) rotated
+                let sx = p.sx;
+                let sy = p.sy;
+                let sz = p.sz;
+
+                // Sphere rotation
+                // around Y
+                let ry1 = sx * cosY - sz * sinY;
+                let rz1 = sx * sinY + sz * cosY;
+                // around X
+                let rx2 = ry1;
+                let ry2 = sy * cosX - rz1 * sinX;
+                let rz2 = sy * sinX + rz1 * cosX;
+
+                // Apply sphere scale
+                rx2 *= sa;
+                ry2 *= sa;
+                rz2 *= sa;
+
+                // Target coordinates representing portrait model
+                const tx = p.tx;
+                const ty = p.ty;
+                const tz = p.tz;
+
+                // Linear interpolation based on morphProgress
+                const fx = rx2 + (tx - rx2) * mp;
+                const fy = ry2 + (ty - ry2) * mp;
+                const fz = rz2 + (tz - rz2) * mp;
+
+                // 3D perspective projection
+                const scale = focalLength / (focalLength + fz);
+                const px = fx * scale + centerX;
+                const py = fy * scale + centerY;
+
+                // Render particle dot on canvas
+                const alpha = (scale * 0.6 + 0.4) * animationState.particleAlpha;
+                ctx.beginPath();
+                ctx.arc(px, py, p.size * scale, 0, Math.PI * 2);
+
+                // Morph details colors (color blends gradually to custom portrait RGB on final morph)
+                if (mp > 0.05) {
+                    ctx.fillStyle = p.col + alpha + ')'; // real portrait rgb color
+                } else {
+                    ctx.fillStyle = `rgba(59, 130, 246, ${alpha})`; // initial electric neon blue
+                }
+                ctx.fill();
+            }
+
+            if (animationState.particleAlpha > 0.005) {
+                requestAnimationFrame(animateParticlesLoop);
+            }
+        }
+
+        /* -----------------------------------------------------------
+           GSAP SCROLLTRIGGER ENGINE: PORTRAIT TRANSLATION & SCROLLS
+           ----------------------------------------------------------- */
+
+        const portraitOuter = document.querySelector('.hero-image-outer');
+        // Dynamic portrait scroll transition (scales down, shifts left, and morphs from rectangle to circle)
+        const isDesktop = window.matchMedia('(min-width: 1025px)').matches;
+        if (portraitOuter) {
+            const wTarget = isDesktop ? "380px" : (window.innerWidth <= 500 ? "240px" : "300px");
+            const hTarget = isDesktop ? "380px" : (window.innerWidth <= 500 ? "240px" : "300px");
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#home",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true,
+                    invalidateOnRefresh: true
+                }
+            });
+
+            if (isDesktop) {
+                tl.to(portraitOuter, {
+                    x: () => {
+                        const targetPlaceholder = document.querySelector('.about-left-placeholder');
+                        if (targetPlaceholder) {
+                            const prevTransform = portraitOuter.style.transform;
+                            portraitOuter.style.transform = "none";
+                            const r1 = portraitOuter.getBoundingClientRect();
+                            const r2 = targetPlaceholder.getBoundingClientRect();
+                            portraitOuter.style.transform = prevTransform;
+                            const dx = r2.left + r2.width / 2 - (r1.left + r1.width / 2);
+                            console.log("DEBUG: dx =", dx, "r1.left =", r1.left, "r2.left =", r2.left);
+                            return dx;
+                        }
+                        return -window.innerWidth * 0.32;
+                    },
+                    y: () => {
+                        const targetPlaceholder = document.querySelector('.about-left-placeholder');
+                        if (targetPlaceholder) {
+                            const prevTransform = portraitOuter.style.transform;
+                            portraitOuter.style.transform = "none";
+                            const r1 = portraitOuter.getBoundingClientRect();
+                            const r2 = targetPlaceholder.getBoundingClientRect();
+                            portraitOuter.style.transform = prevTransform;
+
+                            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                            const y1 = r1.top + scrollTop + r1.height / 2;
+                            const y2 = r2.top + scrollTop + r2.height / 2;
+                            const dy = y2 - y1;
+                            console.log("DEBUG: dy =", dy, "r1.top =", r1.top, "r2.top =", r2.top, "scrollTop =", scrollTop);
+                            return dy;
+                        }
+                        return window.innerHeight * 0.92;
+                    },
+                    scale: 0.65,
+                    ease: "none"
+                }, 0);
+            }
+
+            tl.to("#parallax-portrait", {
+                width: wTarget,
+                height: hTarget,
+                borderRadius: "50%",
+                ease: "none"
+            }, 0);
+        }
+
+        // Stats Counters Animation during viewport entering
+        const countElements = document.querySelectorAll('.stat-num');
+        countElements.forEach(counter => {
+            const targetVal = parseInt(counter.getAttribute('data-val'));
+
+            gsap.fromTo(counter, { textContent: 0 }, {
+                textContent: targetVal,
+                duration: 2.2,
+                ease: "power2.out",
+                snap: { textContent: 1 },
+                scrollTrigger: {
+                    trigger: ".stats-counter-grid",
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                onUpdate: function () {
+                    const currentNum = parseInt(counter.textContent);
+                    const suffix = counter.getAttribute('data-suffix') || '';
+                    if (suffix === '∞') {
+                        if (currentNum > 85) {
+                            counter.textContent = '∞';
+                        } else {
+                            counter.textContent = currentNum;
+                        }
+                    } else {
+                        counter.textContent = currentNum + suffix;
+                    }
+                }
+            });
+        });
+
+        // Glowing Line filling interaction on scroll
+        const scrollTimelineLine = document.getElementById('scroll-timeline-line');
+        if (scrollTimelineLine) {
+            gsap.to(scrollTimelineLine, {
+                height: "100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".timeline-trail",
+                    start: "top 70%",
+                    end: "bottom 60%",
+                    scrub: true
+                }
+            });
+        }
+
+        // Digital Philosophy blur-reveal ScrollTriggers
+        gsap.utils.toArray('.philosophy-block').forEach((block, index) => {
+            gsap.fromTo(block,
+                { opacity: 0.15, filter: "blur(10px)", y: 20 },
+                {
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    y: 0,
+                    duration: 1.0,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: block,
+                        start: "top 80%",
+                        end: "top 40%",
+                        scrub: true,
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        });
+
+        // Fade in animation loops on scroll sections
+        gsap.utils.toArray('.timeline-content-card, .project-apple-card').forEach(box => {
+            gsap.from(box, {
+                opacity: 0,
+                y: 50,
+                filter: "blur(5px)",
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: box,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+        });
+
+        // Technical Radar ScrollTrigger Reveals
+        const radarSys = document.querySelector('.radar-system');
+        if (radarSys) {
+            gsap.from(radarSys, {
+                opacity: 0,
+                scale: 0.82,
+                rotation: -6,
+                duration: 1.5,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: radarSys,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+        }
+
+        const radarHud = document.querySelector('.radar-hud');
+        if (radarHud) {
+            gsap.from(radarHud, {
+                opacity: 0,
+                y: 40,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: radarHud,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                }
+            });
+        }
+
+        // Praxire Network Visualizer Entrance
+        const pxNet = document.querySelector('.px-network-container');
+        if (pxNet) {
+            gsap.from(pxNet, {
+                opacity: 0,
+                scale: 0.85,
+                duration: 1.5,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: pxNet,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+        }
+
+        // Praxire Editorial Content & Stats Grid
+        const pxEditorial = document.querySelector('#praxire h2')?.parentElement;
+        if (pxEditorial) {
+            gsap.from(pxEditorial.children, {
+                opacity: 0,
+                y: 35,
+                stagger: 0.15,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: pxEditorial,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                }
+            });
+        }
+
+        // Contact Form Slide Up
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            gsap.from(contactForm, {
+                opacity: 0,
+                y: 40,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: contactForm,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                }
+            });
+        }
+
+        // Project Cards click launches URLs in new tabs
+        document.querySelectorAll('.project-apple-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Ignore redirection if user clicks interactive utility elements
+                if (e.target.closest('input, textarea, button, .qr-container, .viewport-btn, .transcription-box')) {
+                    return;
+                }
+                const targetUrl = card.getAttribute('data-url');
+                if (targetUrl) {
+                    window.open(targetUrl, '_blank');
+                }
+            });
+        });
+
+        // Intercept hash anchors and scroll smoothly with Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    lenis.scrollTo(targetEl, {
+                        offset: -70,
+                        duration: 1.2
+                    });
+                }
+            });
+        });
+
+        /* ═══════════════════════════════════════════════
+           HERO — Role Typewriter (cycles through identities)
+           ═══════════════════════════════════════════════ */
+        (function initRoleTypewriter() {
+            const roleEl = document.getElementById('hero-role-display');
+            if (!roleEl) return;
+
+            const roles = [
+                'Creative Developer',
+                'UI/UX Engineer',
+                'Full-Stack Builder',
+                'Founder of Praxire',
+            ];
+
+            let idx = 0;
+
+            function swapRole() {
+                idx = (idx + 1) % roles.length;
+                roleEl.style.opacity = '0';
+                setTimeout(() => {
+                    roleEl.textContent = roles[idx];
+                    roleEl.style.opacity = '1';
+                }, 400);
+            }
+
+            setInterval(swapRole, 3000);
+        })();
+
+
+
+        /* ═══════════════════════════════════════════════
+           CODE SIGNATURE — Terminal Live Engine
+           ═══════════════════════════════════════════════ */
+        (function initCodeSignature() {
+
+            const codeOutput = document.getElementById('code-output');
+            const inputDisplay = document.getElementById('code-input-display');
+            if (!codeOutput) return;
+
+            // Sequence of "sessions" that loop in the terminal
+            const sessions = [
+                {
+                    cmd: 'npm run build',
+                    lines: [
+                        { html: '<span class="tok-cmt">// Compiling React application...</span>', delay: 300 },
+                        { html: '<span class="tok-str">✓</span> <span class="tok-var">Bundling modules...</span>', delay: 500 },
+                        { html: '<span class="tok-str">✓</span> <span class="tok-var">Optimising assets (3.2s)</span>', delay: 700 },
+                        { html: '<span class="tok-str">✓</span> <span class="tok-var">Tree-shaking complete. Output: </span><span class="tok-num">148.3 kB</span>', delay: 900 },
+                        { html: '<span class="tok-fn">Build successful</span> <span class="tok-str">→ dist/</span>', delay: 1100 },
+                    ]
+                },
+                {
+                    cmd: 'git push origin main',
+                    lines: [
+                        { html: '<span class="tok-cmt">// Pushing to remote...</span>', delay: 300 },
+                        { html: '<span class="tok-var">Enumerating objects: </span><span class="tok-num">24</span>', delay: 550 },
+                        { html: '<span class="tok-var">Delta compression using up to </span><span class="tok-num">8</span><span class="tok-var"> threads</span>', delay: 800 },
+                        { html: '<span class="tok-str">✓ </span><span class="tok-fn">main</span><span class="tok-var"> → </span><span class="tok-fn">origin/main</span>', delay: 1000 },
+                    ]
+                },
+                {
+                    cmd: 'npx lighthouse https://praxire.com --view',
+                    lines: [
+                        { html: '<span class="tok-cmt">// Auditing performance metrics...</span>', delay: 300 },
+                        { html: '<span class="tok-attr">Performance</span>  <span class="tok-str">98</span> / 100', delay: 600 },
+                        { html: '<span class="tok-attr">Accessibility</span><span class="tok-str"> 100</span> / 100', delay: 900 },
+                        { html: '<span class="tok-attr">SEO</span>          <span class="tok-str">97</span> / 100', delay: 1100 },
+                        { html: '<span class="tok-attr">Best Practices</span><span class="tok-str"> 95</span> / 100', delay: 1300 },
+                        { html: '<span class="tok-str">✓ Report saved → ./reports/audit.html</span>', delay: 1500 },
+                    ]
+                },
+                {
+                    cmd: 'node -e "console.log(\'Hello, World.\'.split(\'\').reverse().join(\'\'))"',
+                    lines: [
+                        { html: '<span class="tok-str">.dlroW ,olleH</span>', delay: 400 },
+                    ]
+                },
+                {
+                    cmd: 'vitest run --coverage',
+                    lines: [
+                        { html: '<span class="tok-cmt">// Running 94 test suites...</span>', delay: 300 },
+                        { html: '<span class="tok-str">✓</span> <span class="tok-fn">AuthService</span> <span class="tok-var">(12 passing)</span>', delay: 600 },
+                        { html: '<span class="tok-str">✓</span> <span class="tok-fn">ApiPipeline</span> <span class="tok-var">(8 passing)</span>', delay: 900 },
+                        { html: '<span class="tok-str">✓</span> <span class="tok-fn">UIComponents</span> <span class="tok-var">(34 passing)</span>', delay: 1200 },
+                        { html: '<span class="tok-num">Coverage</span><span class="tok-var">: </span><span class="tok-str">94.7%</span><span class="tok-var"> — All tests passed ✓</span>', delay: 1500 },
+                    ]
+                },
+            ];
+
+            let sessionIdx = 0;
+            let running = false;
+            const MAX_LINES = 28;
+
+            function clearOldLines() {
+                const lines = codeOutput.querySelectorAll('.code-line');
+                while (lines.length > MAX_LINES) {
+                    codeOutput.removeChild(lines[0]);
+                }
+            }
+
+            function addOutputLine(html) {
+                const row = document.createElement('div');
+                row.className = 'code-line';
+                row.innerHTML = `<span class="code-line-out">${html}</span>`;
+                codeOutput.appendChild(row);
+                clearOldLines();
+            }
+
+            function addPromptLine(cmdHtml) {
+                const row = document.createElement('div');
+                row.className = 'code-line';
+                row.innerHTML = `<span class="code-line-prompt">➜</span><span class="code-line-cmd">${cmdHtml}</span>`;
+                codeOutput.appendChild(row);
+                clearOldLines();
+            }
+
+            function typeText(text, onDone) {
+                let i = 0;
+                inputDisplay.textContent = '';
+                const speed = () => 30 + Math.random() * 40;
+
+                function typeNext() {
+                    if (i < text.length) {
+                        inputDisplay.textContent += text[i++];
+                        setTimeout(typeNext, speed());
+                    } else {
+                        setTimeout(onDone, 300);
+                    }
+                }
+                typeNext();
+            }
+
+            function runSession(session) {
+                running = true;
+                typeText(session.cmd, () => {
+                    // Move typed command to output area
+                    const cmdText = inputDisplay.textContent;
+                    inputDisplay.textContent = '';
+                    addPromptLine(cmdText);
+
+                    // Schedule each output line
+                    session.lines.forEach((line, idx) => {
+                        setTimeout(() => {
+                            addOutputLine(line.html);
+                            // After last line schedule next session
+                            if (idx === session.lines.length - 1) {
+                                setTimeout(() => {
+                                    sessionIdx = (sessionIdx + 1) % sessions.length;
+                                    runSession(sessions[sessionIdx]);
+                                }, 2800);
+                            }
+                        }, line.delay);
+                    });
+                });
+            }
+
+            // Start with a small delay after page load
+            setTimeout(() => runSession(sessions[0]), 1200);
+
+            /* ── Metric Cards: count-up on IntersectionObserver ── */
+            const metricValues = document.querySelectorAll('.code-metric-value[data-target]');
+            const metricObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'), 10);
+                    const dur = 1600;
+                    const step = 16;
+                    const steps = dur / step;
+                    const inc = target / steps;
+                    let val = 0;
+                    const tick = setInterval(() => {
+                        val = Math.min(val + inc, target);
+                        el.textContent = Math.round(val);
+                        if (Math.round(val) >= target) clearInterval(tick);
+                    }, step);
+                    metricObserver.unobserve(el);
+                });
+            }, { threshold: 0.3 });
+
+            metricValues.forEach(el => metricObserver.observe(el));
+
+            /* ── Language Bars: animate on IO ── */
+            const langBars = document.querySelectorAll('.code-lang-bar-fill');
+            const barObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        barObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            langBars.forEach(b => barObserver.observe(b));
+
+        })();
+
+        // Scrollspy active navigation highlighting
+        const navItems = document.querySelectorAll('.nav-links a, .mobile-link');
+        const scrollSections = document.querySelectorAll('section');
+
+        // Merged Scroll Event Listener (Passive & Performance-Optimized)
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            // 1. Update Active Navigation Links
+            let currentActive = '';
+            scrollSections.forEach(section => {
+                const secTop = section.offsetTop - 180;
+                if (scrollY >= secTop) {
+                    currentActive = section.getAttribute('id');
+                }
+            });
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentActive}`) {
+                    item.classList.add('active');
+                }
+            });
+
+            // 2. Sticky Navbar and Scroll Progress Page Indicator
+            const navbar = document.getElementById('navbar');
+            const progress = document.getElementById('scroll-progress');
+            const windowHeight = window.innerHeight;
+            const fullHeight = document.documentElement.scrollHeight - windowHeight;
+            const percentage = (scrollY / (fullHeight || 1)) * 100;
+
+            if (progress) progress.style.width = percentage + '%';
+            if (navbar) {
+                if (scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        }, { passive: true });
+
+        /* ── Interactivity for Featured Projects ── */
+        // 1. Custom QR Generator
+        const qrInput = document.getElementById('project-qr-input');
+        const qrImg = document.getElementById('project-qr-img');
+        if (qrInput && qrImg) {
+            qrInput.addEventListener('input', (e) => {
+                const val = encodeURIComponent(e.target.value.trim() || 'mohamed.dev');
+                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${val}`;
+            });
+        }
+
+        // 2. Speech-to-Text Recorder
+        const dictationBtn = document.getElementById('dictation-btn');
+        const transcriptionText = document.getElementById('transcription-text');
+        const recordingPulse = document.getElementById('recording-pulse');
+        let recognition = null;
+        let isRecording = false;
+
+        if (window.webkitSpeechRecognition || window.SpeechRecognition) {
+            const SpeechRecOutline = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecOutline();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = () => {
+                isRecording = true;
+                transcriptionText.innerHTML = '<span class="text-white/40 italic">Listening... Speak now</span>';
+                recordingPulse.classList.remove('hidden');
+                dictationBtn.innerHTML = '<i class="fa-solid fa-square text-red-500"></i> <span>Stop Recording</span>';
+                dictationBtn.classList.add('bg-red-500/20', 'border-red-500');
+            };
+
+            recognition.onerror = (e) => {
+                console.error("Speech Recognition Error:", e);
+                isRecording = false;
+                recordingPulse.classList.add('hidden');
+                dictationBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> <span>Start Dictation</span>';
+                dictationBtn.classList.remove('bg-red-500/20', 'border-red-500');
+                transcriptionText.textContent = "Error or mic permission denied.";
+            };
+
+            recognition.onend = () => {
+                isRecording = false;
+                recordingPulse.classList.add('hidden');
+                dictationBtn.innerHTML = '<i class="fa-solid fa-microphone"></i> <span>Start Dictation</span>';
+                dictationBtn.classList.remove('bg-red-500/20', 'border-red-500');
+            };
+
+            recognition.onresult = (e) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+                for (let i = e.resultIndex; i < e.results.length; ++i) {
+                    if (e.results[i].isFinal) {
+                        finalTranscript += e.results[i][0].transcript;
+                    } else {
+                        interimTranscript += e.results[i][0].transcript;
+                    }
+                }
+                transcriptionText.innerHTML = `<span class="text-white">${finalTranscript}</span><span class="text-white/40">${interimTranscript}</span>`;
+            };
+        }
+
+        if (dictationBtn && transcriptionText) {
+            dictationBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // prevent card click mapping
+                if (!recognition) {
+                    transcriptionText.textContent = "Web Speech API is not supported in this browser.";
+                    return;
+                }
+                if (isRecording) {
+                    recognition.stop();
+                } else {
+                    recognition.start();
+                }
+            });
+        }
+
+        // 3. Text-to-Speech Converter
+        const ttsBtn = document.getElementById('tts-btn');
+        const ttsInput = document.getElementById('tts-input');
+        if (ttsBtn && ttsInput) {
+            ttsBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // prevent card click
+                const text = ttsInput.value.trim();
+                if (!text) return;
+                window.speechSynthesis.cancel(); // stop current speech
+                const utterance = new SpeechSynthesisUtterance(text);
+                window.speechSynthesis.speak(utterance);
+            });
+        }
+
+        // 4. Besnik Viewport Simulator
+        window.setDemoViewport = function (event, mode) {
+            if (event) event.stopPropagation(); // prevent card trigger
+            const previewCard = document.getElementById('viewport-preview-card');
+            if (!previewCard) return;
+
+            // Remove active classes
+            const btns = document.querySelectorAll('.viewport-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            // Set active class
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                const targetBtn = document.querySelector(`.viewport-btn[data-mode="${mode}"]`);
+                if (targetBtn) targetBtn.classList.add('active');
+            }
+
+            if (mode === 'desktop') {
+                previewCard.style.width = '100%';
+            } else if (mode === 'tablet') {
+                previewCard.style.width = '70%';
+            } else if (mode === 'mobile') {
+                previewCard.style.width = '45%';
+            }
+        };
+
+        /* ═══════════════════════════════════════════════
+           FEATURE 2: INTERACTIVE DOT GRID CANVAS
+           ═══════════════════════════════════════════════ */
+        (function initDotGrid() {
+            const canvas = document.getElementById('dot-grid-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const aboutSection = document.getElementById('about');
+            if (!aboutSection) return;
+
+            let dotMouseX = -1000, dotMouseY = -1000;
+            let animFrameId = null;
+            const dotSpacing = 35;
+            const dotBaseRadius = 1.2;
+            const dotBaseAlpha = 0.12;
+            const influenceRadius = 120;
+
+            function resizeCanvas() {
+                const rect = aboutSection.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Track mouse position relative to the about section
+            aboutSection.addEventListener('mousemove', (e) => {
+                const rect = aboutSection.getBoundingClientRect();
+                dotMouseX = e.clientX - rect.left;
+                dotMouseY = e.clientY - rect.top;
+            });
+            aboutSection.addEventListener('mouseleave', () => {
+                dotMouseX = -1000;
+                dotMouseY = -1000;
+            });
+
+            function drawDots() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const cols = Math.ceil(canvas.width / dotSpacing) + 1;
+                const rows = Math.ceil(canvas.height / dotSpacing) + 1;
+
+                for (let row = 0; row < rows; row++) {
+                    for (let col = 0; col < cols; col++) {
+                        const x = col * dotSpacing;
+                        const y = row * dotSpacing;
+
+                        const dx = x - dotMouseX;
+                        const dy = y - dotMouseY;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        let radius = dotBaseRadius;
+                        let alpha = dotBaseAlpha;
+
+                        if (dist < influenceRadius) {
+                            const t = 1 - (dist / influenceRadius);
+                            const ease = t * t; // quadratic ease
+                            radius = dotBaseRadius + ease * 4;
+                            alpha = dotBaseAlpha + ease * 0.55;
+
+                            // Color shift: from white to accent blue near cursor
+                            const r = Math.round(255 - ease * 196);
+                            const g = Math.round(255 - ease * 125);
+                            const b = 255;
+                            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                        } else {
+                            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                        }
+
+                        ctx.beginPath();
+                        ctx.arc(x, y, radius, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+                animFrameId = requestAnimationFrame(drawDots);
+            }
+
+            // Only render when the about section is visible
+            const dotObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        resizeCanvas();
+                        drawDots();
+                    } else {
+                        if (animFrameId) cancelAnimationFrame(animFrameId);
+                    }
+                });
+            }, { threshold: 0.05 });
+            dotObserver.observe(aboutSection);
+        })();
+
+        /* ═══════════════════════════════════════════════
+           FEATURE 3: SPLIT-CHARACTER TEXT REVEAL
+           ═══════════════════════════════════════════════ */
+        (function initCharReveal() {
+            // Target all section headings
+            const headings = document.querySelectorAll('#skills h2, #projects h2, #timeline h2, #contact h2');
+
+            headings.forEach(heading => {
+                const text = heading.textContent;
+                heading.textContent = '';
+                heading.setAttribute('aria-label', text);
+
+                // Split into individual character spans
+                [...text].forEach(char => {
+                    const span = document.createElement('span');
+                    span.className = 'char-reveal';
+                    if (char === ' ') {
+                        span.classList.add('space');
+                        span.innerHTML = '&nbsp;';
+                    } else {
+                        span.textContent = char;
+                    }
+                    heading.appendChild(span);
+                });
+
+                // Animate on scroll
+                const chars = heading.querySelectorAll('.char-reveal');
+                gsap.to(chars, {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    stagger: 0.025,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: heading,
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            });
+        })();
+
+        /* ═══════════════════════════════════════════════
+           FEATURE 5: WORK BEACON CLICK → CONTACT
+           ═══════════════════════════════════════════════ */
+        (function initWorkBeacon() {
+            const beacon = document.getElementById('work-beacon');
+            if (!beacon) return;
+
+            beacon.addEventListener('click', () => {
+                const contactSection = document.querySelector('#contact');
+                if (contactSection) {
+                    lenis.scrollTo(contactSection, { offset: -70, duration: 1.2 });
+                }
+            });
+
+            // Hide beacon during intro
+            beacon.style.opacity = '0';
+            beacon.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                gsap.to(beacon, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+            }, 4000); // Show after intro animation completes
+        })();
+
+        // Contact Form Submission Handler (FormSubmit AJAX Integration)
+        (function initContactForm() {
+            const form = document.getElementById('contact-form');
+            if (!form) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+                const submitBtn = document.getElementById('btn-submit');
+
+                // Disable submit button during processing
+                submitBtn.disabled = true;
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin ml-2"></i>';
+
+                fetch("https://formsubmit.co/ajax/mohamed2006tvm@gmail.com", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message,
+                        "_subject": "[Portfolio Inbox] " + subject
+                    })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network status code: ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+
+                        if (data.success === "true") {
+                            // Clear the form
+                            form.reset();
+                            // Show custom success toast
+                            showToast('Message dispatched successfully!', 'success');
+                        } else {
+                            showToast('Failed to dispatch message: ' + (data.message || 'Unknown error'), 'error');
+                        }
+                    })
+                    .catch(err => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalText;
+                        showToast('Submission error: ' + err.message, 'error');
+                    });
+            });
+
+            // Clean custom notification toast function
+            function showToast(text, type) {
+                // If there's an existing toast, remove it
+                const existing = document.getElementById('custom-toast');
+                if (existing) existing.remove();
+
+                const toast = document.createElement('div');
+                toast.id = 'custom-toast';
+                toast.style.position = 'fixed';
+                toast.style.bottom = '2rem';
+                toast.style.right = '2rem';
+                toast.style.background = type === 'success' ? '#10b981' : '#ef4444';
+                toast.style.color = '#fff';
+                toast.style.padding = '1rem 2rem';
+                toast.style.borderRadius = '12px';
+                toast.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.3)';
+                toast.style.fontFamily = 'system-ui, sans-serif';
+                toast.style.fontSize = '0.95rem';
+                toast.style.zIndex = '9999';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                toast.style.transition = 'all 0.3s ease';
+
+                toast.textContent = text;
+                document.body.appendChild(toast);
+
+                // Animate entry
+                setTimeout(() => {
+                    toast.style.opacity = '1';
+                    toast.style.transform = 'translateY(0)';
+                }, 50);
+
+                // Auto-diminish
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(10px)';
+                    setTimeout(() => {
+                        toast.remove();
+                    }, 300);
+                }, 4000);
+            }
+        })();
+    </script>
+</body>
+
 </html>
